@@ -6,7 +6,7 @@
 /*   By: alkuzin <[null]@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 16:07:40 by alkuzin           #+#    #+#             */
-/*   Updated: 2023/11/16 18:46:30 by alkuzin          ###   ########.fr       */
+/*   Updated: 2023/11/29 19:23:20 by alkuzin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,6 @@
 #include "memory/ft_memory.h"
 #include "string/ft_string.h"
 #include "stdlib/ft_stdlib.h"
+#include "math/ft_math.h"
 
 #endif /* LIBFT_H */
