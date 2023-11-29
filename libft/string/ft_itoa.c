@@ -6,35 +6,11 @@
 /*   By: alkuzin <[null]@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 17:32:45 by alkuzin           #+#    #+#             */
-/*   Updated: 2023/11/18 19:01:28 by alkuzin          ###   ########.fr       */
+/*   Updated: 2023/11/29 19:24:13 by alkuzin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_string.h"
-
-int ft_pow(int nb, int power)
-{
-    if(power == 0)
-        return 1;
-    
-    if(power == 1)
-        return nb;
-    
-    if(power < 0)
-        return 0;
-
-    int n;
-    int i;
-
-    n = 1;
-    i = 0;
-    while(i < power)
-    {
-        n *= nb;
-        i++;
-    }
-    return n;
-}
 
 char *ft_itoa(int n)
 {
@@ -73,7 +49,7 @@ char *ft_itoa(int n)
     j = 0;
     while(j < i)
     {
-        k = (nb % ft_pow(10, j + 1)) / ft_pow(10, j);
+        k = (nb % (unsigned int)ft_pow(10, j + 1)) / (unsigned int)ft_pow(10, j);
         str[i - j + is_negative - 1] = k + '0';
         j++;
     }
