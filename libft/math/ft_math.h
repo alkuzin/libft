@@ -6,7 +6,7 @@
 /*   By: alkuzin <[null]@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 11:42:07 by alkuzin           #+#    #+#             */
-/*   Updated: 2023/11/29 18:40:51 by alkuzin          ###   ########.fr       */
+/*   Updated: 2023/11/29 19:29:24 by alkuzin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,9 @@ extern double ft_pow(double x, double y);
 
 /* The ft_exp() equal to 'e^x' in math */
 extern double ft_exp(double x);
+
+/* The ft_sqrt() calculates the square root */
+extern double ft_sqrt(double x);
 
 /* The ft_factorial() equal to 'n!' in math (up to 20! including) */
 extern unsigned long ft_factorial(unsigned int n);
