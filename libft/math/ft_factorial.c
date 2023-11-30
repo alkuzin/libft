@@ -6,7 +6,7 @@
 /*   By: alkuzin <[null]@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 12:31:12 by alkuzin           #+#    #+#             */
-/*   Updated: 2023/11/29 13:23:49 by alkuzin          ###   ########.fr       */
+/*   Updated: 2023/11/30 14:33:58 by alkuzin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ unsigned long ft_factorial(unsigned int n)
 {
     unsigned long result;
 
-    if(n < 0 || n > 20)
+    if(n > 20)
         return 0;
 
     if(n == 0)
