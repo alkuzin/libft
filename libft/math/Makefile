@@ -3,12 +3,14 @@ CFLAGS = -Wall -Wextra -Werror -Wno-implicit-function-declaration
 
 OBJS = ft_exp.o             \
 		ft_factorial.o      \
-		ft_pfactorial.o      \
+		ft_pfactorial.o     \
 		ft_log.o            \
 	    ft_pow.o            \
 	    ft_sqrt.o           \
 	    ft_variations.o     \
-		ft_variations_r.o 
+		ft_variations_r.o 	\
+		ft_combinations.o	\
+		ft_combinations_r.o
 
 FINAL_OBJ = math.o
 
@@ -42,6 +44,12 @@ ft_variations.o: ft_variations.c
 
 ft_variations_r.o: ft_variations_r.c
 	$(CC) $(CFLAGS) -c ft_variations_r.c
+
+ft_combinations.o: ft_combinations.c
+	$(CC) $(CFLAGS) -c ft_combinations.c
+
+ft_combinations_r.o: ft_combinations_r.c
+	$(CC) $(CFLAGS) -c ft_combinations_r.c
 
 clean:
 	@echo "(*) Removing extra files"
