@@ -6,7 +6,7 @@
 /*   By: alkuzin <[null]@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 17:19:26 by alkuzin           #+#    #+#             */
-/*   Updated: 2023/12/01 20:32:56 by alkuzin          ###   ########.fr       */
+/*   Updated: 2023/12/03 10:39:13 by alkuzin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,13 @@
 #define FT_STDIO_H
 
 #include "../libft.h"
+#include "printf/ft_printf.h"
 
 /* Print character */
 extern void ft_putchar(char c);
 
 /* Print string on the current line */
-extern void ft_putstr(char *str);
+extern int ft_putstr(char *str);
 
 /* Print string on the new line */
 extern void ft_puts(char *str);
