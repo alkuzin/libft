@@ -6,18 +6,21 @@
 /*   By: alkuzin <[null]@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 18:45:27 by alkuzin           #+#    #+#             */
-/*   Updated: 2023/12/01 21:14:34 by alkuzin          ###   ########.fr       */
+/*   Updated: 2023/12/03 11:56:49 by alkuzin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
+#include <stdio.h>
+
+/*
 static int ft_parse(const char* str, va_list args);
 
 static int ft_parse_flags(const char* str, va_list args);
 
 static int ft_print_args(char type, va_list args);
-
+*/
 static int ft_print_args(char type, va_list args)
 {
     int count;
@@ -29,10 +32,18 @@ static int ft_print_args(char type, va_list args)
         count++;
     }
     else if(type == 'd' || type == 'i')
-        count += ft_printf_int(va_args(args, int));
+        count += ft_printf_int((va_arg(args, int)));
+    
+    else if(type == 's')
+        count += ft_printf_str((va_arg(args, char *)));
+    else if(type == 's')
+        count += ft_printf_str((va_arg(args, char *)));
+    else if(type == 'c')
+        count += ft_printf_char((va_arg(args, int)));
+    return count;
 }
 
-static int ft_parse(const char* str, va_list arguments)
+int ft_parse(const char* str, va_list args)
 {
     int count;
     int i;
@@ -40,14 +51,18 @@ static int ft_parse(const char* str, va_list arguments)
     i = -1;
     while(str[++i]) 
     {
-    
         if(str[i] == '%' && str[i + 1] != '\0')
-            count += ft_print_args(str[i], args); /* change to ft_parse_flags later */ 
+        {
+           // printf("str[i + 1]: '%c'\n", str[i+1]);
+            count += ft_print_args(str[i + 1], args); /* change to ft_parse_flags later */ 
+            i++;
+        }
+        else
+            ft_putchar(str[i]);
     }
 
+    return count;
 }
-
-
 
 int ft_printf(const char *format, ...)
 {
@@ -64,11 +79,11 @@ int ft_printf(const char *format, ...)
         return 0;
 
     count = 0;
-    va_start(arguments, format);
+    va_start(args, format);
     
     count = ft_parse(str, args);
 
-    va_end(arguments);
+    va_end(args);
     free(str);
     return count;    
 }
