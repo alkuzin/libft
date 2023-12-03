@@ -6,7 +6,7 @@
 /*   By: alkuzin <[null]@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 15:47:39 by alkuzin           #+#    #+#             */
-/*   Updated: 2023/11/19 12:01:22 by alkuzin          ###   ########.fr       */
+/*   Updated: 2023/12/03 11:47:16 by alkuzin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ extern char *ft_strtrim(char const *s1, char const *set);
 
 /* The ft_itoa() returns a string representing the 
  * integer received as an argument. */
-extern char *ft_itoa(int n);
-
+extern char *ft_itoa(long n);
+extern size_t ft_itoa_len(long n);
 /* The ft_strmapi() applies the function ’f’ to each character of the string ’s’ */
 extern char *ft_strmapi(char const *s, int (*f)(int));
 
