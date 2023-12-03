@@ -6,7 +6,7 @@
 /*   By: alkuzin <[null]@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 20:32:40 by alkuzin           #+#    #+#             */
-/*   Updated: 2023/12/01 21:06:31 by alkuzin          ###   ########.fr       */
+/*   Updated: 2023/12/03 11:57:16 by alkuzin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,16 @@ typedef struct s_flags
 extern int ft_printf(const char *format, ...);
 
 /* */
-static int ft_parse(const char* str, va_list arguments);
+extern int ft_parse(const char* str, va_list args);
 
 /* int */
-int ft_printf_int(int n);
+extern int ft_printf_int(int n);
+
+/* string */
+extern int ft_printf_str(char *str);
+extern char *ft_printf_itoa(long n);
+
+/* char */
+extern int ft_printf_char(int c);
 
 #endif /* FT_PRINTF_H */
