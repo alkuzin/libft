@@ -1,56 +1,30 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -Wno-implicit-function-declaration
 
-OBJS = ft_exp.o             \
-		ft_factorial.o      \
-		ft_pfactorial.o     \
-		ft_log.o            \
-	    ft_pow.o            \
-	    ft_sqrt.o           \
-	    ft_variations.o     \
-		ft_variations_r.o 	\
-		ft_combinations.o	\
-		ft_combinations_r.o
+NAME = math.o
 
-FINAL_OBJ = math.o
+SRC = ft_exp ft_factorial ft_pfactorial ft_log ft_pow ft_sqrt ft_variations ft_variations_r ft_combinations ft_combinations_r
 
-final: $(OBJS)
-	ld -relocatable $(OBJS) -o $(FINAL_OBJ)
-	$(MAKE) clean
+SRCS = $(addsuffix .c, $(SRC))
+OBJS = $(addsuffix .o, $(SRC))
 
-ft_exp.o: ft_exp.c
-	$(CC) $(CFLAGS) -c ft_exp.c
+OBJS_DIR = objs/
+OBJS_PREFIXED = $(addprefix $(OBJS_DIR), $(OBJS))
 
-ft_factorial.o: ft_factorial.c
-	$(CC) $(CFLAGS) -c ft_factorial.c
+$(OBJS_PREFIXED): $(SRCS)
+	mkdir -p $(OBJS_DIR)
+	$(CC) $(CFLAGS) -c $(SRCS)
+	mv *.o $(OBJS_DIR)
 
-ft_pfactorial.o: ft_pfactorial.c
-	$(CC) $(CFLAGS) -c ft_pfactorial.c
+$(NAME): $(OBJS_PREFIXED)
+	ld -relocatable $(OBJS_PREFIXED) -o $(NAME)
 
-ft_log.o: ft_log.c
-	$(CC) $(CFLAGS) -c ft_log.c
-
-ft_permutations.o: ft_permutations.c
-	$(CC) $(CFLAGS) -c ft_permutations.c
-
-ft_pow.o: ft_pow.c
-	$(CC) $(CFLAGS) -c ft_pow.c
-
-ft_sqrt.o: ft_sqrt.c
-	$(CC) $(CFLAGS) -c ft_sqrt.c
-
-ft_variations.o: ft_variations.c
-	$(CC) $(CFLAGS) -c ft_variations.c
-
-ft_variations_r.o: ft_variations_r.c
-	$(CC) $(CFLAGS) -c ft_variations_r.c
-
-ft_combinations.o: ft_combinations.c
-	$(CC) $(CFLAGS) -c ft_combinations.c
-
-ft_combinations_r.o: ft_combinations_r.c
-	$(CC) $(CFLAGS) -c ft_combinations_r.c
+all: $(NAME) 
 
 clean:
-	@echo "(*) Removing extra files"
-	rm $(OBJS)
+	rm -rf $(OBJS_DIR)
+
+fclean: clean
+	rm -f $(NAME)
+
+re: clean all
