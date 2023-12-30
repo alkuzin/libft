@@ -1,4 +1,4 @@
 # libft
 The libft - rewrited C standart library for own projects
 
-<img src="img/libft-banner.png">
+<img src="res/libft-banner.png">
