@@ -1,41 +1,30 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -Wno-implicit-function-declaration
 
-OBJS = ft_putchar.o      \
-		ft_puts.o        \
-		ft_putstr.o      \
-		ft_putchar_fd.o  \
-	    ft_putendl_fd.o  \
-	    ft_putnbr_fd.o    \
-	    ft_putstr_fd.o
+NAME = stdio.o
 
-FINAL_OBJ = stdio.o
+SRC = ft_putchar ft_puts ft_putstr ft_putchar_fd ft_putendl_fd ft_putnbr_fd ft_putstr_fd
 
-final: $(OBJS)
-	ld -relocatable $(OBJS) -o $(FINAL_OBJ)
-	$(MAKE) clean
+SRCS = $(addsuffix .c, $(SRC))
+OBJS = $(addsuffix .o, $(SRC))
 
-ft_putchar.o: ft_putchar.c
-	$(CC) $(CFLAGS) -c ft_putchar.c
+OBJS_DIR = objs/
+OBJS_PREFIXED = $(addprefix $(OBJS_DIR), $(OBJS))
 
-ft_puts.o: ft_puts.c
-	$(CC) $(CFLAGS) -c ft_puts.c
+$(OBJS_PREFIXED): $(SRCS)
+	mkdir -p $(OBJS_DIR)
+	$(CC) $(CFLAGS) -c $(SRCS)
+	mv *.o $(OBJS_DIR)
 
-ft_putstr.o: ft_putstr.c
-	$(CC) $(CFLAGS) -c ft_putstr.c
+$(NAME): $(OBJS_PREFIXED)
+	ld -relocatable $(OBJS_PREFIXED) -o $(NAME)
 
-ft_putchar_fd.o: ft_putchar_fd.c
-	$(CC) $(CFLAGS) -c ft_putchar_fd.c
-
-ft_putendl_fd.o: ft_putendl_fd.c
-	$(CC) $(CFLAGS) -c ft_putendl_fd.c
-
-ft_putstr_fd.o: ft_putstr_fd.c
-	$(CC) $(CFLAGS) -c ft_putstr_fd.c
-
-ft_putnbr_fd.o: ft_putnbr_fd.c
-	$(CC) $(CFLAGS) -c ft_putnbr_fd.c
+all: $(NAME) 
 
 clean:
-	@echo "(*) Removing extra files"
-	rm $(OBJS)
+	rm -rf $(OBJS_DIR)
+
+fclean: clean
+	rm -f $(NAME)
+
+re: clean all
