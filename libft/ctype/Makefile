@@ -1,41 +1,30 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -Wno-implicit-function-declaration
 
-OBJS = ft_isalpha.o ft_isdigit.o ft_isprint.o ft_toupper.o ft_isalnum.o ft_isascii.o ft_isupper.o ft_islower.o  ft_tolower.o
+NAME = ctype.o
 
-FINAL_OBJ = ctype.o
+SRC = ft_isalpha ft_isdigit ft_isprint ft_toupper ft_isalnum ft_isascii ft_isupper ft_islower  ft_tolower
 
-final: $(OBJS)
-	ld -relocatable $(OBJS) -o $(FINAL_OBJ)
-	$(MAKE) clean
+SRCS = $(addsuffix .c, $(SRC))
+OBJS = $(addsuffix .o, $(SRC))
 
-ft_isalpha.o: ft_isalpha.c
-	$(CC) $(CFLAGS) -c ft_isalpha.c
+OBJS_DIR = objs/
+OBJS_PREFIXED = $(addprefix $(OBJS_DIR), $(OBJS))
 
-ft_isdigit.o: ft_isdigit.c
-	$(CC) $(CFLAGS) -c ft_isdigit.c
+$(OBJS_PREFIXED): $(SRCS)
+	mkdir -p $(OBJS_DIR)
+	$(CC) $(CFLAGS) -c $(SRCS)
+	mv *.o $(OBJS_DIR)
 
-ft_isprint.o: ft_isprint.c
-	$(CC) $(CFLAGS) -c ft_isprint.c
+$(NAME): $(OBJS_PREFIXED)
+	ld -relocatable $(OBJS_PREFIXED) -o $(NAME)
 
-ft_isupper.o: ft_isupper.c
-	$(CC) $(CFLAGS) -c ft_isupper.c
-
-ft_toupper.o: ft_toupper.c
-	$(CC) $(CFLAGS) -c ft_toupper.c
-
-ft_isalnum.o: ft_isalnum.c
-	$(CC) $(CFLAGS) -c ft_isalnum.c
-
-ft_isascii.o: ft_isascii.c
-	$(CC) $(CFLAGS) -c ft_isascii.c
-
-ft_islower.o: ft_islower.c
-	$(CC) $(CFLAGS) -c ft_islower.c
-
-ft_tolower.o: ft_tolower.c
-	$(CC) $(CFLAGS) -c ft_tolower.c
+all: $(NAME) 
 
 clean:
-	@echo "(*) Removing extra files"
-	rm $(OBJS)
+	rm -rf $(OBJS_DIR)
+
+fclean: clean
+	rm -f $(NAME)
+
+re: clean all
