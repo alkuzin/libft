@@ -1,25 +1,30 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -Wno-implicit-function-declaration
 
-OBJS = ft_atoi.o   \
-	   ft_range.o  \
-	   ft_calloc.o
+NAME = stdlib.o
 
-FINAL_OBJ = stdlib.o
+SRC = ft_atoi ft_range ft_calloc
 
-final: $(OBJS)
-	ld -relocatable $(OBJS) -o $(FINAL_OBJ)
-	$(MAKE) clean
+SRCS = $(addsuffix .c, $(SRC))
+OBJS = $(addsuffix .o, $(SRC))
 
-ft_atoi.o: ft_atoi.c
-	$(CC) $(CFLAGS) -c ft_atoi.c
+OBJS_DIR = objs/
+OBJS_PREFIXED = $(addprefix $(OBJS_DIR), $(OBJS))
 
-ft_range.o: ft_range.c
-	$(CC) $(CFLAGS) -c ft_range.c
+$(OBJS_PREFIXED): $(SRCS)
+	mkdir -p $(OBJS_DIR)
+	$(CC) $(CFLAGS) -c $(SRCS)
+	mv *.o $(OBJS_DIR)
 
-ft_calloc.o: ft_calloc.c
-	$(CC) $(CFLAGS) -c ft_calloc.c
+$(NAME): $(OBJS_PREFIXED)
+	ld -relocatable $(OBJS_PREFIXED) -o $(NAME)
+
+all: $(NAME) 
 
 clean:
-	@echo "(*) Removing extra files"
-	rm $(OBJS)
+	rm -rf $(OBJS_DIR)
+
+fclean: clean
+	rm -f $(NAME)
+
+re: clean all
