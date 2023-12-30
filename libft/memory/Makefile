@@ -1,37 +1,30 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -Wno-implicit-function-declaration
 
-OBJS = ft_bzero.o     \
-	   ft_memccpy.o   \
-	   ft_memchr.o    \
-	   ft_memcpy.o    \
-	   ft_memmove.o   \
-	   ft_memset.o    \
+NAME = memory.o
 
-FINAL_OBJ = memory.o
+SRC = ft_bzero ft_memccpy ft_memchr ft_memcpy ft_memmove ft_memset
 
-final: $(OBJS)
-	ld -relocatable $(OBJS) -o $(FINAL_OBJ)
-	$(MAKE) clean
+SRCS = $(addsuffix .c, $(SRC))
+OBJS = $(addsuffix .o, $(SRC))
 
-ft_bzero.o: ft_bzero.o
-	$(CC) $(CFLAGS) -c ft_bzero.c
+OBJS_DIR = objs/
+OBJS_PREFIXED = $(addprefix $(OBJS_DIR), $(OBJS))
 
-ft_memccpy.o: ft_memccpy.c
-	$(CC) $(CFLAGS) -c ft_memccpy.c
+$(OBJS_PREFIXED): $(SRCS)
+	mkdir -p $(OBJS_DIR)
+	$(CC) $(CFLAGS) -c $(SRCS)
+	mv *.o $(OBJS_DIR)
 
-ft_memchr.o: ft_memchr.c
-	$(CC) $(CFLAGS) -c ft_memchr.c
+$(NAME): $(OBJS_PREFIXED)
+	ld -relocatable $(OBJS_PREFIXED) -o $(NAME)
 
-ft_memcpy.o: ft_memcpy.c
-	$(CC) $(CFLAGS) -c ft_memcpy.c
-
-ft_memmove.o: ft_memmove.c
-	$(CC) $(CFLAGS) -c ft_memmove.c
-
-ft_memset.o: ft_memset.c
-	$(CC) $(CFLAGS) -c ft_memset.c
+all: $(NAME) 
 
 clean:
-	@echo "(*) Removing extra files"
-	rm $(OBJS)
+	rm -rf $(OBJS_DIR)
+
+fclean: clean
+	rm -f $(NAME)
+
+re: clean all
