@@ -19,17 +19,24 @@ double ft_exp(double x)
     
     if(x == 1)
         return E;
+
+    if(x >= 65)
+        return _INF;
+
+    if(x <= -15.0)
+        return 0;
     
+
     int accuracy;
     double exp_sum;
     int i;
 
-    accuracy = 44;
+    accuracy = 1000;
     exp_sum = 1;
     i = accuracy - 1;
     while (i > 0)
     {
-        exp_sum = 1 + x * exp_sum / i;    
+        exp_sum = 1 + x * exp_sum / i;  
         i--;
     }
 

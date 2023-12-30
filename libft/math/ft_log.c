@@ -15,7 +15,7 @@
 double ft_log(double x)
 {
     if(x <= 0)
-        return 0;
+        return _NAN;
 
     if(x == 1)
         return 0;
@@ -33,7 +33,7 @@ double ft_log(double x)
     term = (x - 1) / (x + 1);
     square = term * term;
     i = 1;
-    while(i <= 1000)
+    while(i <= 60000)
     {
         result += term / i;
         term *= square;

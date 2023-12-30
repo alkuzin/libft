@@ -19,6 +19,14 @@
 #define PI 3.141592653589793
 #define E  2.718281828459045
 
+#define _INF ft_inf()
+#define _NAN (0.0f / 0.0f)
+
+#define FABS(x) ((x) < 0 ? -(x) : (x))
+
+/* The ft_inf() return infinity */
+extern double ft_inf(void);
+
 /* The ft_log() calculates natural logarithm */
 extern double ft_log(double x);
 

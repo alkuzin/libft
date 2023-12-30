@@ -3,7 +3,7 @@ CFLAGS = -Wall -Wextra -Werror -Wno-implicit-function-declaration
 
 NAME = math.o
 
-SRC = ft_exp ft_factorial ft_pfactorial ft_log ft_pow ft_sqrt ft_variations ft_variations_r ft_combinations ft_combinations_r
+SRC = ft_exp ft_factorial ft_pfactorial ft_log ft_pow ft_sqrt ft_variations ft_variations_r ft_combinations ft_combinations_r ft_inf
 
 SRCS = $(addsuffix .c, $(SRC))
 OBJS = $(addsuffix .o, $(SRC))

@@ -14,5 +14,14 @@
 
 double ft_pow(double x, double y)
 {
+    if(y == 0)
+        return 1;
+
+    if(x == 0 && y < 0)
+        return _INF;
+
+    if(y == 1 || y == -1)
+        return x;
+
     return ft_exp(ft_log(x) * y);
 }
