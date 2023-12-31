@@ -12,21 +12,36 @@
 
 #include "libfttest.h"
 
-void test_ctype_func(int(*test_f)(int), int *test_values, int size, const char *func_name)
+int test_ctype_func(int(*test_f)(int), int *test_values, int *expected_values, int size, const char *func_name)
 {
 	int test;
-	int result;
+	int failed_tests;
+	int actual_result;
+	int expected_result;
 
 	
-	printf("\n ------------ Test %s() ------------\n", func_name);
 	test = 0;
+	failed_tests = 0;
+	printf("\n ------------ Test %s() ------------\n", func_name);
 	while(test < size)
 	{
-		result = test_f(test_values[test]);
-		printf(" Test %02d: %s('%c'):\t% 3d\t%c \n", test + 1, func_name,
-				test_values[test], result, result);
+		actual_result = test_f(test_values[test]);
+		expected_result = expected_values[test];
+		printf("\n Test %d %s('%c')\n", test + 1, func_name, test_values[test]);
+		printf(" Expected result: %d\n", expected_result);
+		printf(" Actual result:   %d\n", actual_result);
+		
+		if(expected_result != actual_result)
+		{
+			printf("\033[31m Test %d: <FAILED> on value (%d) \033[0m\n", test + 1, test_values[test]); 
+			failed_tests++;
+		}
+		else	
+			printf("\033[92m Test: %d (OK) \033[0m\n", test + 1);
+
 		test++;
 	}
+	return failed_tests;	
 }
 
 
@@ -155,7 +170,7 @@ void tests_result(int total_tests, int failed_tests)
 	if(failed_tests != 0)
 		printf("\033[31m FAILED: %d/%d \033[0m\n", failed_tests, total_tests);
 	else
-		printf("\033[92m FAILED: %d \033[0m\n", failed_tests);
+		printf("\033[92m FAILED: %d/%d \033[0m\n", failed_tests, total_tests);
 }
 
 int test_math_func_comb(unsigned long(*test_f)(unsigned int, unsigned int), unsigned long (*test_values)[3], int size, const char *func_name)
