@@ -6,18 +6,21 @@
 /*   By: alkuzin <->                                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 19:09:00 by alkuzin           #+#    #+#             */
-/*   Updated: 2023/12/31 15:35:17 by alkuzin          ###   ########.fr       */
+/*   Updated: 2023/12/31 22:06:31 by alkuzin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
 #include "libfttest.h"
 
-/* Test libft ctype functions */
+/* Test libft ctype/ functions */
 void test_ctype(int tests, int *failed_tests, int *total_tests);
 
-/* Test libft math functions */
-void test_math(int *failed_tests, int *total_tests, int tests);
+/* Test libft math/ functions */
+void test_math(int tests, int *failed_tests, int *total_tests);
+
+/* Test libft memory/ functions */
+void test_memory(int tests, int *failed_tests, int *total_tests);
 
 
 int main(void)
@@ -33,8 +36,12 @@ int main(void)
 	
 	puts("\n\n ================ TEST CTYPE ================\n\n");
 	test_ctype(tests, &failed_tests, &total_tests);
-	// puts("\n\n ================ TEST MATH =================\n\n");
-	// test_math(&failed_tests, &total_tests, tests);
+	
+	puts("\n\n ================ TEST MATH =================\n\n");
+	test_math(&failed_tests, &total_tests, tests);
+
+	puts("\n\n =============== TEST MEMORY ================\n\n");
+	test_memory(tests, &failed_tests, &total_tests);
 
 	puts("\n >>>>>>>>>>>>>>>> TESTS RESULT <<<<<<<<<<<<<<<<");
 	tests_result(total_tests, failed_tests);
@@ -68,7 +75,7 @@ void test_ctype(int tests, int *failed_tests, int *total_tests)
 	*total_tests += tests * 9;
 }
 
-void test_math(int *failed_tests, int *total_tests, int tests)
+void test_math(int tests, int *failed_tests, int *total_tests)
 {
 	double test_values_math[] = {2, -13, -14.0001, 64, 65.0000001, 0.001, 1, -1, 0.0001, 1024, -2, 333.333, 997.5, -31, 777};
 	double test_values_math_2_arg[15][2] = 
@@ -219,4 +226,75 @@ void test_math(int *failed_tests, int *total_tests, int tests)
 	*failed_tests += test_math_func_comb(ft_combinations_r, test_values_ft_combinations_r, tests, "ft_combinations_r");
 
 	*total_tests += tests * 11;
+}
+
+void test_memory(int tests, int *failed_tests, int *total_tests)
+{
+	int test_values_ft_memset[15][2] = 
+	{
+		{1,    12},
+		{'F',   0},
+		{'a',  16},
+		{0xff,  6},
+		{0,    32},
+		{'x', 	10},
+		{';', 	19},
+		{'#', 	27},
+		{'^', 	32},
+		{0,      2},
+		{':',    2},
+		{45,     4},
+		{0x66,  16},
+		{-1,     6},
+		{122,   15}
+	};
+
+	int test_values_ft_bzero[15] = { 1, 2, 3, 4, 5, 10, 20, 30, 32, 16, 3, 19, 0, 11, 13 };
+
+	int test_values_ft_memchr[15][2] = 
+	{
+		{'y', 32},
+		{'a',  0},
+		{'2', 16},
+		{'f',  6},
+		{4,   32},
+		{'q', 20},
+		{'T',  5},
+		{'4', 27},
+		{'2', 32},
+		{'_', 12},
+		{'i', 50},
+		{'y',  4},
+		{'g', 16},
+		{'*',  6},
+		{'*', 25}
+	};
+
+	int test_values_ft_memcpy[15] = { 1, 2, 3, 4, 5, 10, 20, 30, 32, 16, 40, 19, 0, 11, 13 };
+
+	int test_values_ft_memccpy[15][2] = 
+	{
+		{'y', 31},
+		{'a',  0},
+		{'y', 31},
+		{'f',  6},
+		{4,   32},
+		{'q', 20},
+		{'T',  5},
+		{'4', 27},
+		{'2', 32},
+		{'_', 12},
+		{'i', 50},
+		{'y',  5},
+		{'g', 16},
+		{'*',  6},
+		{'*', 25}
+	};
+
+	*failed_tests += test_ft_memset(test_values_ft_memset, tests);
+	*failed_tests += test_ft_bzero(test_values_ft_bzero, tests);
+	*failed_tests += test_ft_memchr(test_values_ft_memchr, tests);
+	*failed_tests += test_ft_memcpy(test_values_ft_memcpy, tests);
+	*failed_tests += test_ft_memccpy(test_values_ft_memccpy, tests);
+	*total_tests += tests * 5;
 }
