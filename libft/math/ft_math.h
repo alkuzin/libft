@@ -6,7 +6,7 @@
 /*   By: alkuzin <[null]@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 11:42:07 by alkuzin           #+#    #+#             */
-/*   Updated: 2023/12/01 18:31:01 by alkuzin          ###   ########.fr       */
+/*   Updated: 2023/12/31 15:32:40 by alkuzin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ extern double ft_sqrt(double x);
 extern unsigned long ft_factorial(unsigned int n);
 
 /* The ft_pfactorial() equal calculating factorial from n to m including */
-extern unsigned int ft_pfactorial(unsigned int n, unsigned int m);
+extern unsigned long ft_pfactorial(unsigned int n, unsigned int m);
 
 /* Combinatorical functions */
 
@@ -54,15 +54,15 @@ extern unsigned long ft_permutations(unsigned int n);
 /* extern unsigned int ft_permutations_r(unsigned int n, unsigned int m, unsigned int *k); */
 
 /* The ft_variations() variations without repetition */
-extern unsigned int ft_variations(unsigned int m, unsigned int n);
+extern unsigned long ft_variations(unsigned int m, unsigned int n);
 
 /* The ft_variations_r() variations with repetition */
-extern unsigned int ft_variations_r(unsigned int m, unsigned int n);
+extern unsigned long ft_variations_r(unsigned int n, unsigned int m);
 
 /* The ft_combinations() combinations without repetition */
-extern unsigned int ft_combinations(unsigned int m, unsigned int n);
+extern unsigned long ft_combinations(unsigned int m, unsigned int n);
 
 /* The ft_combinations_r() combinations with repetition */
-extern unsigned int ft_combinations_r(unsigned int m, unsigned int n);
+extern unsigned long ft_combinations_r(unsigned int m, unsigned int n);
 
 #endif /* FT_MATH_H */
