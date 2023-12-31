@@ -1,61 +1,64 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                                            */
-/*   test.c                                                                   */
-/*                                                                            */
-/*   By: alkuzin <->                                                          */
-/*                                                                            */
-/*   Created: 2023/12/30 19:09:19 by alkuzin                                  */
-/*   Updated: 2023/12/31 00:06:27 by alkuzin                                  */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alkuzin <->                                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/30 19:09:00 by alkuzin           #+#    #+#             */
+/*   Updated: 2023/12/31 15:35:17 by alkuzin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <math.h>
 #include "../libft/libft.h"
+#include "libfttest.h"
 
-void test_ctype_func(int(*test_f)(int), int *test_values, int size, const char *func_name);
+/* Test libft ctype functions */
+static void test_ctype(int tests);
 
-int test_math_func_1_arg(double(*test_f)(double), double(*f)(double), double *test_values, int size, const char *func_name);
+/* Test libft math functions */
+static void test_math(int *failed_tests, int *total_tests, int tests);
 
-int test_math_func_no_arg(double(*test_f)(void), double(*f)(void),const char *func_name);
-
-int test_math_func_2_arg(double(*test_f)(double, double), double(*f)(double, double), double (*test_values)[2], int size, const char *func_name);
 
 int main(void)
 {
-	int size;
-	puts("\n\n ================ TEST CTYPE ================\n\n");
+	int tests;
+	int total_tests;
+	int failed_tests;
+	
 
-	size = 15;
+	tests = 15;
+	total_tests = 0;
+	failed_tests = 0;
+	
+	puts("\n\n ================ TEST CTYPE ================\n\n");
+	test_ctype(tests);
+	puts("\n\n ================ TEST MATH =================\n\n");
+	test_math(&failed_tests, &total_tests, tests);
+
+	puts("\n >>>>>>>>>>>>>>>> TESTS RESULT <<<<<<<<<<<<<<<<");
+	tests_result(total_tests, failed_tests);
+	return 0;
+}
+
+static void test_ctype(int tests)
+{
 	int test_values_ctype[] = {'a', 'A', 'z', 'Z', '0', '9', '^', '+', '\'', ']', 'X', 'x', 0, 31, 777};	
 	
-	test_ctype_func(ft_isalnum, test_values_ctype, size, "ft_isalnum");
-	test_ctype_func(ft_isalpha, test_values_ctype, size, "ft_isalpha");
-	test_ctype_func(ft_isascii, test_values_ctype, size, "ft_isascii");
-	test_ctype_func(ft_isdigit, test_values_ctype, size, "ft_isdigit");
-	test_ctype_func(ft_isupper, test_values_ctype, size, "ft_isupper");
-	test_ctype_func(ft_islower, test_values_ctype, size, "ft_islower");
-	test_ctype_func(ft_isprint, test_values_ctype, size, "ft_isprint");
-	test_ctype_func(ft_toupper, test_values_ctype, size, "ft_toupper");
-	test_ctype_func(ft_tolower, test_values_ctype, size, "ft_tolower");
+	test_ctype_func(ft_isalnum, test_values_ctype, tests, "ft_isalnum");
+	test_ctype_func(ft_isalpha, test_values_ctype, tests, "ft_isalpha");
+	test_ctype_func(ft_isascii, test_values_ctype, tests, "ft_isascii");
+	test_ctype_func(ft_isdigit, test_values_ctype, tests, "ft_isdigit");
+	test_ctype_func(ft_isupper, test_values_ctype, tests, "ft_isupper");
+	test_ctype_func(ft_islower, test_values_ctype, tests, "ft_islower");
+	test_ctype_func(ft_isprint, test_values_ctype, tests, "ft_isprint");
+	test_ctype_func(ft_toupper, test_values_ctype, tests, "ft_toupper");
+	test_ctype_func(ft_tolower, test_values_ctype, tests, "ft_tolower");
+}
 
-
-	puts("\n\n ================ TEST MATH =================\n\n");
-	
-	
-	double test_values_math[] = {2, -13, -14.0001, 64, 65.0000001, 0.001, 1, -1, 0.0001, 1024, -2, 333.333, 997.5, -31, 777};	
-	int failed_tests;
-	double actual_result;
-	double expected_result;
-
-	
-	failed_tests = 0;
-	failed_tests += test_math_func_1_arg(ft_log, log, test_values_math, size, "ft_log");
-	failed_tests += test_math_func_1_arg(ft_exp, exp, test_values_math, size, "ft_exp");
-	failed_tests += test_math_func_1_arg(ft_sqrt, sqrt, test_values_math, size, "ft_sqrt");
-	failed_tests += test_ft_inf();
-	
+static void test_math(int *failed_tests, int *total_tests, int tests)
+{
+	double test_values_math[] = {2, -13, -14.0001, 64, 65.0000001, 0.001, 1, -1, 0.0001, 1024, -2, 333.333, 997.5, -31, 777};
 	double test_values_math_2_arg[15][2] = 
 	{
 		{0, 0},
@@ -74,151 +77,134 @@ int main(void)
 		{7, 0.01},
 		{2, -13}
 	};	
-	failed_tests += test_math_func_2_arg(ft_pow, pow, test_values_math_2_arg, size, "ft_pow");
 
-	
-	puts("\n >>>>>>>>>>>>>>>> TESTS RESULT <<<<<<<<<<<<<<<<");
-	if(failed_tests != 0)
-		printf("\033[31m FAILED: %d/%d \033[0m\n", failed_tests, size * failed_tests);
-	else
-		printf("\033[92m FAILED: %d \033[0m\n", failed_tests, size * failed_tests);
-	return 0;
-}
-
-void test_ctype_func(int(*test_f)(int), int *test_values, int size, const char *func_name)
-{
-	int test;
-	int result;
-
-	
-	printf("\n ------------ Test %s() ------------\n", func_name);
-	test = 0;
-	while(test < size)
+	unsigned long test_values_ft_pfactorial[15][3] = 
 	{
-		result = test_f(test_values[test]);
-		printf(" Test %02d: %s('%c'):\t% 3d\t%c \n", test + 1, func_name,
-				test_values[test], result, result);
-		test++;
-	}
-}
+		{0, 0, 0},
+		{0, 1, 0},
+		{123, 122, 0},
+		{1, 5, 120},
+		{1, 7, 5040},
+		{2, 41, 15551764317513711616UL},
+		{2, 42, 7538058755741581312UL},
+		{2, 16, 20922789888000UL},
+		{2, 128, _INF},
+		{3, 7, 2520},
+		{5, 12, 19958400UL},
+		{2, 65, 9223372036854775808UL},
+		{2, 66, _INF},
+		{2, 50, 15188249005818642432UL},
+		{2, 13, 6227020800UL}
+	};	
 
-
-int test_math_func_1_arg(double(*test_f)(double), double(*f)(double), double *test_values, int size, const char *func_name)
-{
-	int test;
-	double actual_result;
-	double expected_result;
-	int failed_tests;
-
-
-	printf("\n ------------ Test %s() ------------\n", func_name);
-	test = 0;
-	failed_tests = 0;
-	while(test < size)
+	unsigned long test_values_ft_factorial[15][2] = 
 	{
-		actual_result = test_f(test_values[test]);
-		expected_result = f(test_values[test]);
-		printf("\n Test %d %s(%lf)\n", test + 1, func_name, test_values[test]);
-		printf(" Expected result: %lf\n", expected_result);
-		printf(" Actual result:   %lf\n", actual_result);
-		
-		if(fabs(expected_result - actual_result) > 0.000001)
-		{
-			printf("\033[31m Test %d: <FAILED> on value (%lf) \033[0m\n", test + 1, test_values[test]); 
-		failed_tests++;
-		}
-		else	
-			printf("\033[92m Test: %d (OK) \033[0m\n", test + 1);
-		
-		test++;
-	}
-	return failed_tests;
-}
+		{0,  1},
+		{7,  5040},
+		{9,  362880},
+		{10, 3628800},
+		{11, 39916800UL},
+		{12, 479001600UL},
+		{13, 6227020800UL},
+		{14, 87178291200UL},
+		{15, 1307674368000UL},
+		{16, 20922789888000UL},
+		{17, 355687428096000UL},
+		{18, 6402373705728000UL},
+		{19, 121645100408832000UL},
+		{20, 2432902008176640000UL},
+		{21, _INF}
+	};	
 
-int test_math_func_no_arg(double(*test_f)(void), double(*f)(void),const char *func_name)
-{
-	double actual_result;
-	double expected_result;
-	int failed_tests;
-	
-
-	failed_tests = 0;
-	expected_result = __builtin_inf();
-	actual_result = ft_inf();
-	printf("\n ------------ Test %s ------------\n\n", func_name);
-	printf(" Test 1 %s\n", func_name);
-	printf(" Expected result: %lf\n", expected_result);
-	printf(" Actual result:   %lf\n", actual_result);
-
-	if(fabs(expected_result - actual_result) > 0.000001)
+	unsigned long test_values_ft_variations[15][3] = 
 	{
-		puts("\033[31m Test 1: <FAILED> on value \033[0m"); 
-		failed_tests++;
-	}
-	else	
-		puts("\033[92m Test: 1 (OK) \033[0m\n");
-	
-	return failed_tests;
-}
+		{0, 0, 1},
+		{0, 1, 1},
+		{5, 45, 146611080},
+		{1, 5, 5},
+		{7, 7, 5040},
+		{2, 41, 1640},
+		{6, 19, 19535040},
+		{8, 34, 732058145280},
+		{2, 128, 16256},
+		{13, 15, 653837184000},
+		{5, 12, 95040},
+		{4, 65, 16248960},
+		{3, 47, 97290},
+		{12, 19, 24135932620800},
+		{9, 19, 33522128640}
+	};	
 
-int test_math_func_2_arg(double(*test_f)(double, double), double(*f)(double, double), double (*test_values)[2], int size, const char *func_name)
-{
-	int test;
-	double actual_result;
-	double expected_result;
-	int failed_tests;
-	double x_value;
-	double y_value;
-
-
-	printf("\n ------------ Test %s() ------------\n", func_name);
-	test = 0;
-	failed_tests = 0;
-	while(test < size)
+	unsigned long test_values_ft_variations_r[15][3] = 
 	{
-		x_value = test_values[test][0];
-		y_value = test_values[test][1];
-		actual_result = test_f(x_value, y_value);
-		expected_result = f(x_value, y_value);
-		printf("\n Test %d %s(%lf, %lf)\n", test + 1, func_name, x_value, y_value);
-		printf(" Expected result: %lf\n", expected_result);
-		printf(" Actual result:   %lf\n", actual_result);
-		
-		if(fabs(expected_result - actual_result) > 0.000001)
-		{
-			printf("\033[31m Test %d: <FAILED> on value (%lf, %lf) \033[0m\n", test + 1, x_value, y_value); 
-			failed_tests++;
-		}
-		else	
-			printf("\033[92m Test: %d (OK) \033[0m\n", test + 1);
-		
-		test++;
-	}
-	return failed_tests;
-}
+		{0, 0, 1},
+		{0, 1, 0},
+		{123, 0, 1},
+		{5, 2, 25},
+		{122, 3, 1815848},
+		{2, 63, 9223372036854775808UL},
+		{2, 65, _INF},
+		{142, 3, 2863288},
+		{2, 64, _INF},
+		{2, 37, 137438953472},
+		{2, 32, 4294967296},
+		{9, 12, 282429536481},
+		{9, 7, 4782969},
+		{4, 17, 17179869184},
+		{13, 2, 169}
+	};	
 
-int test_ft_inf(void)
-{
-	double actual_result;
-	double expected_result;
-	int failed_tests;
-	
-
-	failed_tests = 0;
-	expected_result = __builtin_inf();
-	actual_result = ft_inf();
-	printf("\n ------------ Test ft_inf() ------------\n");
-	puts(" Test 1 ft_inf()");
-	printf(" Expected result: %lf\n", expected_result);
-	printf(" Actual result:   %lf\n", actual_result);
-
-	if(fabs(expected_result - actual_result) > 0.000001)
+	unsigned long test_values_ft_combinations[15][3] = 
 	{
-		puts("\033[31m Test 1: <FAILED> on value \033[0m"); 
-		failed_tests++;
-	}
-	else	
-		puts("\033[92m Test: 1 (OK) \033[0m\n");
-	
-	return failed_tests;
+		{0, 0, 1},
+		{0, 1, 1},
+		{5, 45, 1221759},
+		{1, 5, 5},
+		{7, 7, 1},
+		{2, 41, 820},
+		{6, 19, 27132},
+		{8, 34, 18156204},
+		{2, 128, 8128},
+		{13, 15, 105},
+		{5, 12, 792},
+		{4, 65, 677040},
+		{3, 47, 16215},
+		{12, 19, 50388},
+		{9, 19, 92378}
+	};	
+
+	unsigned long test_values_ft_combinations_r[15][3] = 
+	{
+		{0, 0, 1},
+		{0, 1, 1},
+		{5, 45, 1906884},
+		{1, 5, 5},
+		{7, 7, 1716},
+		{2, 41, 861},
+		{6, 19, 134596},
+		{8, 34, 95548245},
+		{2, 128, 8256},
+		{13, 15, 20058300},
+		{5, 12, 4368},
+		{4, 65, 814385},
+		{3, 47, 18424},
+		{12, 19, 86493225},
+		{9, 19, 4686825}
+	};	
+
+	*failed_tests += test_math_func_1_arg(ft_log, log, test_values_math, tests, "ft_log");
+	*failed_tests += test_math_func_1_arg(ft_exp, exp, test_values_math, tests, "ft_exp");
+	*failed_tests += test_math_func_1_arg(ft_sqrt, sqrt, test_values_math, tests, "ft_sqrt");
+	*failed_tests += test_ft_inf();
+	*total_tests += 1;
+	*failed_tests += test_math_func_2_arg(ft_pow, pow, test_values_math_2_arg, tests, "ft_pow");
+	*failed_tests += test_math_func_comb(ft_pfactorial, test_values_ft_pfactorial, tests, "ft_pfactorial");
+	*failed_tests += test_math_func_factorial(ft_factorial, test_values_ft_factorial, tests, "ft_factorial");
+	*failed_tests += test_math_func_factorial(ft_permutations, test_values_ft_factorial, tests, "ft_permutations");
+	*failed_tests += test_math_func_comb(ft_variations, test_values_ft_variations, tests, "ft_variations");
+	*failed_tests += test_math_func_comb(ft_variations_r, test_values_ft_variations_r, tests, "ft_variations_r");
+	*failed_tests += test_math_func_comb(ft_combinations, test_values_ft_combinations, tests, "ft_combinations");
+	*failed_tests += test_math_func_comb(ft_combinations_r, test_values_ft_combinations_r, tests, "ft_combinations_r");
+
+	*total_tests += tests * 11;
 }
