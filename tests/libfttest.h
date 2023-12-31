@@ -6,7 +6,7 @@
 /*   By: alkuzin <->                                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/31 15:35:53 by alkuzin           #+#    #+#             */
-/*   Updated: 2023/12/31 15:35:57 by alkuzin          ###   ########.fr       */
+/*   Updated: 2023/12/31 22:06:10 by alkuzin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,12 @@
 
 #include <stdio.h>
 #include <math.h>
+#include <string.h>
 #include "../libft/libft.h"
 
 /* Test libft ctype functions with one argument */
 extern int test_ctype_func(int(*test_f)(int), int *test_values, int *expected_values, int size, const char *func_name);
+
 
 /* Test libft math functions with one argument */
 extern int test_math_func_1_arg(double(*test_f)(double), double(*f)(double), double *test_values, int size, const char *func_name);
@@ -37,6 +39,23 @@ extern int test_math_func_factorial(unsigned long(*test_f)(unsigned int), unsign
 
 /* Test libft math ft_inf() function */
 extern int test_ft_inf(void);
+
+
+/* Test libft memory ft_memset() function */
+extern int test_ft_memset(int (*test_values)[2], int size);
+
+/* Test libft memory ft_bzero() function */
+extern int test_ft_bzero(int *test_values, int size);
+
+/* Test libft memory ft_memchr() function */
+extern int test_ft_memchr(int (*test_values)[2], int size);
+
+/* Test libft memory ft_memcpy() function */
+extern int test_ft_memcpy(int *test_values, int size);
+
+/* Test libft memory ft_memccpy() function */
+extern int test_ft_memccpy(int (*test_values)[2], int size);
+
 
 /* Displays total tests result */
 extern void tests_result(int total_tests, int failed_tests);
