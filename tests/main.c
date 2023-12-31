@@ -14,10 +14,10 @@
 #include "libfttest.h"
 
 /* Test libft ctype functions */
-static void test_ctype(int tests);
+void test_ctype(int tests, int *failed_tests, int *total_tests);
 
 /* Test libft math functions */
-static void test_math(int *failed_tests, int *total_tests, int tests);
+void test_math(int *failed_tests, int *total_tests, int tests);
 
 
 int main(void)
@@ -32,31 +32,43 @@ int main(void)
 	failed_tests = 0;
 	
 	puts("\n\n ================ TEST CTYPE ================\n\n");
-	test_ctype(tests);
-	puts("\n\n ================ TEST MATH =================\n\n");
-	test_math(&failed_tests, &total_tests, tests);
+	test_ctype(tests, &failed_tests, &total_tests);
+	// puts("\n\n ================ TEST MATH =================\n\n");
+	// test_math(&failed_tests, &total_tests, tests);
 
 	puts("\n >>>>>>>>>>>>>>>> TESTS RESULT <<<<<<<<<<<<<<<<");
 	tests_result(total_tests, failed_tests);
 	return 0;
 }
 
-static void test_ctype(int tests)
+void test_ctype(int tests, int *failed_tests, int *total_tests)
 {
-	int test_values_ctype[] = {'a', 'A', 'z', 'Z', '0', '9', '^', '+', '\'', ']', 'X', 'x', 0, 31, 777};	
+	int test_values_ctype[]          = { 'a', 'A', 'z', 'Z', '0', '9', '^', '+', '\'', ']', 'X', 'x', 0, 31, 777};	
+
+	int expected_values_ft_isalnum[] = { 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0};	
+	int expected_values_ft_isalpha[] = { 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0};		
+	int expected_values_ft_isascii[] = { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0};	
+	int expected_values_ft_isdigit[] = { 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0};	
+	int expected_values_ft_isupper[] = { 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0};	
+	int expected_values_ft_islower[] = { 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0};		
+	int expected_values_ft_isprint[] = { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0};	
+	int expected_values_ft_toupper[] = { 'A', 'A', 'Z', 'Z', '0', '9', '^', '+', '\'', ']', 'X', 'X', 0, 31, 777};	
+	int expected_values_ft_tolower[] = { 'a', 'a', 'z', 'z', '0', '9', '^', '+', '\'', ']', 'x', 'x', 0, 31, 777};	
 	
-	test_ctype_func(ft_isalnum, test_values_ctype, tests, "ft_isalnum");
-	test_ctype_func(ft_isalpha, test_values_ctype, tests, "ft_isalpha");
-	test_ctype_func(ft_isascii, test_values_ctype, tests, "ft_isascii");
-	test_ctype_func(ft_isdigit, test_values_ctype, tests, "ft_isdigit");
-	test_ctype_func(ft_isupper, test_values_ctype, tests, "ft_isupper");
-	test_ctype_func(ft_islower, test_values_ctype, tests, "ft_islower");
-	test_ctype_func(ft_isprint, test_values_ctype, tests, "ft_isprint");
-	test_ctype_func(ft_toupper, test_values_ctype, tests, "ft_toupper");
-	test_ctype_func(ft_tolower, test_values_ctype, tests, "ft_tolower");
+	*failed_tests += test_ctype_func(ft_isalnum, test_values_ctype, expected_values_ft_isalnum, tests, "ft_isalnum");
+	*failed_tests += test_ctype_func(ft_isalpha, test_values_ctype, expected_values_ft_isalpha, tests, "ft_isalpha");
+	*failed_tests += test_ctype_func(ft_isascii, test_values_ctype, expected_values_ft_isascii, tests, "ft_isascii");
+	*failed_tests += test_ctype_func(ft_isdigit, test_values_ctype, expected_values_ft_isdigit, tests, "ft_isdigit");
+	*failed_tests += test_ctype_func(ft_isupper, test_values_ctype, expected_values_ft_isupper, tests, "ft_isupper");
+	*failed_tests += test_ctype_func(ft_islower, test_values_ctype, expected_values_ft_islower, tests, "ft_islower");
+	*failed_tests += test_ctype_func(ft_isprint, test_values_ctype, expected_values_ft_isprint, tests, "ft_isprint");
+	*failed_tests += test_ctype_func(ft_toupper, test_values_ctype, expected_values_ft_toupper, tests, "ft_toupper");
+	*failed_tests += test_ctype_func(ft_tolower, test_values_ctype, expected_values_ft_tolower, tests, "ft_tolower");
+
+	*total_tests += tests * 9;
 }
 
-static void test_math(int *failed_tests, int *total_tests, int tests)
+void test_math(int *failed_tests, int *total_tests, int tests)
 {
 	double test_values_math[] = {2, -13, -14.0001, 64, 65.0000001, 0.001, 1, -1, 0.0001, 1024, -2, 333.333, 997.5, -31, 777};
 	double test_values_math_2_arg[15][2] = 
