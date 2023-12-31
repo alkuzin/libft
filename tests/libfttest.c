@@ -6,7 +6,7 @@
 /*   By: alkuzin <->                                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/31 15:36:05 by alkuzin           #+#    #+#             */
-/*   Updated: 2023/12/31 15:48:56 by alkuzin          ###   ########.fr       */
+/*   Updated: 2023/12/31 22:06:16 by alkuzin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ int test_ctype_func(int(*test_f)(int), int *test_values, int *expected_values, i
 	}
 	return failed_tests;	
 }
-
 
 int test_math_func_1_arg(double(*test_f)(double), double(*f)(double), double *test_values, int size, const char *func_name)
 {
@@ -240,5 +239,254 @@ int test_math_func_factorial(unsigned long(*test_f)(unsigned int), unsigned long
 		
 		test++;
 	}
+	return failed_tests;
+}
+
+
+static void print_buffer(void *buffer, int size)
+{
+	unsigned char *buf;
+	unsigned char cc;
+	unsigned char to_print;
+    int i;
+
+
+    buf = (unsigned char *)buffer;
+	putchar('\'');
+	i = 0;
+	while (i < size)
+	{
+		cc = (unsigned char)buf[i];
+		
+		if (cc == '\0')
+		{
+			putchar('0');
+			i++;
+			continue;
+		}
+
+		to_print = ft_isalnum(cc)? cc : '.';
+
+		putchar(to_print);
+		i++;
+	}
+	putchar('\'');
+	putchar('\n');
+}
+
+int test_ft_memset(int (*test_values)[2], int size)
+{
+	int test;
+	int failed_tests;
+	unsigned char expected_result[32 + 1];
+	unsigned char   actual_result[32 + 1];
+	int value;
+	size_t s;
+
+
+	test = 0;
+	failed_tests = 0;
+	puts("\n ------------ Test ft_memset() ------------");
+	while (test < size)
+	{
+		memset(expected_result, '.', sizeof(expected_result));
+		memset(actual_result,   '.', sizeof(  actual_result));
+
+		value     = test_values[test][0];
+		s = (size_t)test_values[test][1];
+
+		   memset(expected_result, value, s);
+		ft_memset(actual_result,   value, s);
+		expected_result[32] = '\0';
+		actual_result[32]   = '\0';
+
+		printf("\n Test %d \n", test + 1);
+		printf(" Expected result |    memset(buffer[32], %d, %lu): \t '%-32s'\n", value, s, expected_result);
+		printf(" Actual result   | ft_memset(buffer[32], %d, %lu): \t '%-32s'\n", value, s, actual_result);
+
+		if((memcmp(expected_result, actual_result, 32) != 0))
+		{
+			printf("\033[31m Test %d: <FAILED> on value (%d, %lu) \033[0m\n", test + 1, value, s); 
+			failed_tests++;
+		}
+		else	
+			printf("\033[92m Test: %d (OK) \033[0m\n", test + 1);
+
+		test++;
+	}
+	
+	return failed_tests;
+}
+
+
+int test_ft_bzero(int *test_values, int size)
+{
+	int test;
+	int failed_tests;
+	unsigned char expected_result[32 + 1];
+	unsigned char   actual_result[32 + 1];
+	size_t s;
+
+
+	test = 0;
+	failed_tests = 0;
+	puts("\n ------------ Test ft_bzero() ------------");
+	while (test < size)
+	{
+		memset(expected_result, 0xff, sizeof(expected_result));
+		memset(actual_result,   0xff, sizeof(  actual_result));
+
+		s = (size_t)test_values[test];
+		memset(expected_result, '\0', s);
+		ft_bzero(actual_result, s);
+		expected_result[32] = '\0';
+		actual_result[32]   = '\0';
+
+		printf("\n Test %d \n", test + 1);
+		printf(" Expected result |    bzero(buffer[32], %lu): \t ", s);
+		print_buffer(expected_result, 32);
+		printf(" Actual result   | ft_bzero(buffer[32], %lu): \t ", s);
+		print_buffer(actual_result, 32);
+
+		if((memcmp(expected_result, actual_result, 32) != 0))
+		{
+			printf("\033[31m Test %d: <FAILED> on value (%lu) \033[0m\n", test + 1, s); 
+			failed_tests++;
+		}
+		else	
+			printf("\033[92m Test %d: (OK) \033[0m\n", test + 1);
+
+		test++;
+	}
+	
+	return failed_tests;
+}
+
+
+int test_ft_memchr(int (*test_values)[2], int size)
+{
+	int test;
+	int failed_tests;
+	
+	unsigned char *expected_result;
+	unsigned char   *actual_result;
+	int value;
+	size_t s;
+
+
+	unsigned char buffer[32 + 1] = "Test^string^*2024_qwerty*fd";
+	test = 0;
+	failed_tests = 0;
+	buffer[32] = '\0';
+	puts("\n ------------ Test ft_memchr() ------------");
+	while (test < size)
+	{
+		value     = test_values[test][0];
+		s = (size_t)test_values[test][1];
+
+		expected_result  = memchr(buffer, value, s);
+		actual_result = ft_memchr(buffer, value, s);
+
+		printf("\n Test %d \n", test + 1);
+
+		if (expected_result == NULL)
+			printf(" Expected result |    memchr(buffer[32], %d, %lu): \t '(null)'\n", value, s);
+		else
+			printf(" Expected result |    memchr(buffer[32], %d, %lu): \t '%-32s'\n", value, s, expected_result);
+		
+		if (actual_result == NULL)
+			printf(" Actual result   | ft_memchr(buffer[32], %d, %lu): \t '(null)'\n", value, s);
+		else
+			printf(" Actual result   | ft_memchr(buffer[32], %d, %lu): \t '%-32s'\n", value, s, actual_result);
+
+		if(expected_result != actual_result)
+		{
+			printf("\033[31m Test %d: <FAILED> on value (%d, %lu) \033[0m\n", test + 1, value, s); 
+			failed_tests++;
+		}
+		else	
+			printf("\033[92m Test: %d (OK) \033[0m\n", test + 1);
+
+		test++;
+	}
+	
+	return failed_tests;
+}
+
+
+int test_ft_memcpy(int *test_values, int size)
+{
+	int test;
+	int failed_tests;
+	unsigned char expected_result[32 + 1];
+	unsigned char   actual_result[32 + 1];
+	size_t s;
+
+	const unsigned char buffer[32] = "Test^string^*2024_qwerty*fd";
+	test = 0;
+	failed_tests = 0;
+	puts("\n ------------ Test ft_memcpy() ------------");
+	while (test < size)
+	{
+		memset(expected_result, 0, 32);
+		memset(actual_result,   0, 32);
+
+		s = (size_t)test_values[test];
+
+		   memcpy(expected_result, buffer, s);
+		ft_memcpy(actual_result,   buffer, s);
+		expected_result[32] = '\0';
+		actual_result[32]   = '\0';
+
+		printf("\n Test %d \n", test + 1);
+		printf(" Expected result |    memcpy(dest[32], src[32], %lu): \t '%-32s'\n", s, expected_result);
+		printf(" Actual result   | ft_memcpy(dest[32], src[32], %lu): \t '%-32s'\n", s, actual_result);
+
+		if((memcmp(expected_result, actual_result, 32) != 0))
+		{
+			printf("\033[31m Test %d: <FAILED> on value (%lu) \033[0m\n", test + 1, s); 
+			failed_tests++;
+		}
+		else	
+			printf("\033[92m Test: %d (OK) \033[0m\n", test + 1);
+
+		test++;
+	}
+	
+	return failed_tests;
+}
+
+int test_ft_memccpy(int (*test_values)[2], int size)
+{
+	int test;
+	int failed_tests;
+	unsigned char actual_result[32 + 1];
+	unsigned char *actual_result_p;
+	int value;
+	size_t s;
+
+
+	unsigned char buffer[32 + 1] = "Test^string^*2024_qwerty*fd";
+	test = 0;
+	failed_tests = 0;
+	puts("\n ------------ Test ft_memccpy() ------------");
+	while (test < size)
+	{
+		memset(actual_result,   0, 32);
+
+		value     = test_values[test][0];
+		s = (size_t)test_values[test][1];
+
+		actual_result_p = ft_memccpy(actual_result, buffer, value, s);
+		printf("\n Test %d \n", test + 1);
+
+		if (actual_result_p == NULL)
+			printf(" Actual result | ft_memccpy(buffer[32], '%c', %lu): \t '(null)'\n", value, s);
+		else
+			printf(" Actual result | ft_memccpy(buffer[32], '%c', %lu): \t '%-32s'\n", value, s, actual_result);
+
+		test++;
+	}
+	
 	return failed_tests;
 }
