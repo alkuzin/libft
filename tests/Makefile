@@ -19,7 +19,7 @@ $(OBJS_PREFIXED): $(SRCS)
 	mv *.o $(OBJS_DIR)
 
 $(NAME): $(OBJS_PREFIXED)
-	$(MAKE) re -C $(LIBFT_PATH)
+	$(MAKE) all -C $(LIBFT_PATH)
 	$(CC) $(CFLAGS) $(OBJS_PREFIXED) $(LIBFT_PATH)$(LIBFT) -lm -o $(NAME)
 
 all: $(NAME) 
