@@ -18,7 +18,7 @@
 #include "../libft/libft.h"
 
 /* Test libft ctype functions with one argument */
-extern void test_ctype_func(int(*test_f)(int), int *test_values, int size, const char *func_name);
+extern int test_ctype_func(int(*test_f)(int), int *test_values, int *expected_values, int size, const char *func_name);
 
 /* Test libft math functions with one argument */
 extern int test_math_func_1_arg(double(*test_f)(double), double(*f)(double), double *test_values, int size, const char *func_name);
