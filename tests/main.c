@@ -6,7 +6,7 @@
 /*   By: alkuzin <->                                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 19:09:00 by alkuzin           #+#    #+#             */
-/*   Updated: 2023/12/31 22:06:31 by alkuzin          ###   ########.fr       */
+/*   Updated: 2024/01/01 12:36:00 by alkuzin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int main(void)
 	test_ctype(tests, &failed_tests, &total_tests);
 	
 	puts("\n\n ================ TEST MATH =================\n\n");
-	test_math(&failed_tests, &total_tests, tests);
+	test_math(tests, &failed_tests, &total_tests);
 
 	puts("\n\n =============== TEST MEMORY ================\n\n");
 	test_memory(tests, &failed_tests, &total_tests);
@@ -291,10 +291,16 @@ void test_memory(int tests, int *failed_tests, int *total_tests)
 		{'*', 25}
 	};
 
+	int test_values_ft_memmove[15] = { 1, 2, 3, 4, 5, 10, 20, 30, 32, 16, 40, 19, 0, 11, 13 };
+
 	*failed_tests += test_ft_memset(test_values_ft_memset, tests);
 	*failed_tests += test_ft_bzero(test_values_ft_bzero, tests);
 	*failed_tests += test_ft_memchr(test_values_ft_memchr, tests);
 	*failed_tests += test_ft_memcpy(test_values_ft_memcpy, tests);
 	*failed_tests += test_ft_memccpy(test_values_ft_memccpy, tests);
-	*total_tests += tests * 5;
+	*failed_tests += test_ft_memmove(test_values_ft_memmove, tests);
+
+	// To test ft_memcmp() it is better to replace in the previous test standart memcmp() on ft_memcmp() 
+	*failed_tests += test_ft_memcmp(test_values_ft_memmove, tests);
+	*total_tests += tests * 6;
 }
