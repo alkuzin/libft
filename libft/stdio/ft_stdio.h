@@ -20,7 +20,7 @@
 extern void ft_putchar(char c);
 
 /* Print string on the current line */
-extern int ft_putstr(char *str);
+extern void ft_putstr(char *str);
 
 /* Print string on the new line */
 extern void ft_puts(char *str);
