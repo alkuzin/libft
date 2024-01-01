@@ -12,7 +12,7 @@
 
 #include "ft_stdio.h"
 
-int ft_putstr(char *str)
+void ft_putstr(char *str)
 {
     int i;
 
@@ -22,5 +22,4 @@ int ft_putstr(char *str)
         write(1, &str[i], 1);
         i++;
     }
-    return i;
 }
