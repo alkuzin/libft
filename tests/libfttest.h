@@ -6,7 +6,7 @@
 /*   By: alkuzin <->                                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/31 15:35:53 by alkuzin           #+#    #+#             */
-/*   Updated: 2023/12/31 22:06:10 by alkuzin          ###   ########.fr       */
+/*   Updated: 2024/01/01 12:35:12 by alkuzin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,12 @@ extern int test_ft_memcpy(int *test_values, int size);
 
 /* Test libft memory ft_memccpy() function */
 extern int test_ft_memccpy(int (*test_values)[2], int size);
+
+/* Test libft memory ft_memmove() function */
+extern int test_ft_memmove(int *test_values, int size);
+
+/* Test libft memory ft_memcmp() function */
+extern int test_ft_memcmp(int *test_values, int size);
 
 
 /* Displays total tests result */
