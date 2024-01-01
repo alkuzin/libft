@@ -12,7 +12,7 @@
 
 #include "ft_stdio.h"
 
-void ft_putnr_fd(int n, int fd)
+void ft_putnbr_fd(int n, int fd)
 {
     int temp;
     int size;
