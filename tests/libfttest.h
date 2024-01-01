@@ -6,7 +6,7 @@
 /*   By: alkuzin <->                                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/31 15:35:53 by alkuzin           #+#    #+#             */
-/*   Updated: 2024/01/01 12:35:12 by alkuzin          ###   ########.fr       */
+/*   Updated: 2024/01/01 20:13:03 by alkuzin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,16 @@ extern void test_stdio_ft_putstr_fd(void (*f)(char *, int), char *(*test_values)
 
 /* Test libft stdio ft_putnbr_fd() function */
 extern void test_stdio_ft_putnbr_fd(int *test_values, int size);
+
+
+/* Test libft stdlib ft_atoi() function */
+extern int test_stdlib_ft_atoi(char *(*test_values), int size);
+
+/* Test libft stdlib ft_range() function */
+extern int test_stdlib_ft_range(int (*test_values)[2], int size);
+
+/* Test libft stdlib ft_calloc() function */
+extern int test_stdlib_ft_calloc(size_t *test_values, int *test_sizes, int size);
 
 
 /* Displays total tests result */
