@@ -584,3 +584,142 @@ int test_ft_memcmp(int *test_values, int size)
 	
 	return failed_tests;
 }
+
+
+
+
+
+void test_stdio_ft_putchar(void (*f)(char), int *test_values, int size, const char *func_name)
+{
+	int test;
+	int value;
+	char buffer[128];
+	
+
+	test = 0;
+	printf("\n ------------ Test %s() ------------\n", func_name);
+	while(test < size)
+	{
+		value = test_values[test];
+		
+		snprintf(buffer, 128, "\n Test %d %s(%#02x)\n Actual result: \t\'", test + 1, func_name, value);
+		ft_putstr(buffer);
+		f(value);
+		putchar('\'');
+		putchar('\n');
+		printf("%s", " Expected result: \t\'");
+		putchar(value);
+		putchar('\'');
+		putchar('\n');
+		
+		test++;
+	}
+}
+
+
+void test_stdio_ft_putchar_fd(void (*f)(char, int), int *test_values, int size, const char *func_name)
+{
+	int test;
+	int value;
+	char buffer[128];
+	
+
+	test = 0;
+	printf("\n ------------ Test %s() ------------\n", func_name);
+	while(test < size)
+	{
+		value = test_values[test];
+		
+		snprintf(buffer, 128, "\n Test %d %s(%#02x, 1)\n Actual result: \t\'", test + 1, func_name, value);
+		ft_putstr(buffer);
+		f(value, 1);
+		putchar('\'');
+		putchar('\n');
+		printf("%s", " Expected result: \t\'");
+		putchar(value);
+		putchar('\'');
+		putchar('\n');
+		
+		test++;
+	}
+}
+
+void test_stdio_ft_putstr(void (*f)(char *), char *(*test_values)[2], int size, const char *func_name)
+{
+	int test;
+	char argument[32];
+	char value[32];
+	char buffer[128];
+	
+
+	test = 0;
+	printf("\n ------------ Test %s() ------------\n", func_name);
+	while(test < size)
+	{
+		strncpy(argument, test_values[test][0], 32);
+		strncpy(value,    test_values[test][1], 32);
+		
+		snprintf(buffer, 128, "\n Test %d %s('%s')\n Actual result: \t\'", test + 1, func_name, argument);
+		ft_putstr(buffer);
+		f(value);
+		putchar('\'');
+		putchar('\n');
+		printf("%s", " Expected result: \t");
+		printf("'%s'\n", value);
+		
+		test++;
+	}
+}
+
+void test_stdio_ft_putstr_fd(void (*f)(char *, int), char *(*test_values)[2], int size, const char *func_name)
+{
+	int test;
+	char argument[32];
+	char value[32];
+	char buffer[128];
+	
+
+	test = 0;
+	printf("\n ------------ Test %s() ------------\n", func_name);
+	while(test < size)
+	{
+		strncpy(argument, test_values[test][0], 32);
+		strncpy(value,    test_values[test][1], 32);
+		
+		snprintf(buffer, 128, "\n Test %d %s('%s', 1)\n Actual result: \t\'", test + 1, func_name, argument);
+		ft_putstr(buffer);
+		f(value, 1);
+		putchar('\'');
+		putchar('\n');
+		printf("%s", " Expected result: \t");
+		printf("'%s'\n", value);
+		
+		test++;
+	}
+}
+
+void test_stdio_ft_putnbr_fd(int *test_values, int size)
+{
+	int test;
+	int value;
+	char buffer[128];
+	
+
+	test = 0;
+	puts("\n ------------ Test ft_putnbr_fd() ------------");
+	while(test < size)
+	{
+		value = test_values[test];
+		snprintf(buffer, 128, "\n Test %d ft_putnbr_fd(%d, 1)\n Actual result: \t\'", test + 1, value);
+
+		ft_putstr(buffer);
+		ft_putnbr_fd(value, 1);
+		putchar('\'');
+		putchar('\n');
+		
+		printf("%s", " Expected result: \t");
+		printf("'%d'\n", value);
+		
+		test++;
+	}
+}
