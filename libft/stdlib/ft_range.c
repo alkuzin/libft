@@ -6,7 +6,7 @@
 /*   By: alkuzin <[null]@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 19:08:34 by alkuzin           #+#    #+#             */
-/*   Updated: 2023/11/17 19:09:52 by alkuzin          ###   ########.fr       */
+/*   Updated: 2024/01/01 20:13:46 by alkuzin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ int *ft_range(int min, int max)
 
     i = 0;
     n = min;
-    size = ABS(min) + ABS(max);
-    array = (int *)malloc(sizeof(int) * (size - 1));
-    while(n < max)
+    size = max - min;
+    array = (int *)malloc(sizeof(int) * (size));
+    while(i < size)
     {
         array[i] = n;
         n++;
