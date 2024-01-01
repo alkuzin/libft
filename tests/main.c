@@ -6,7 +6,7 @@
 /*   By: alkuzin <->                                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 19:09:00 by alkuzin           #+#    #+#             */
-/*   Updated: 2024/01/01 12:36:00 by alkuzin          ###   ########.fr       */
+/*   Updated: 2024/01/01 20:13:27 by alkuzin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,10 @@ void test_memory(int tests, int *failed_tests, int *total_tests);
 
 /* Test libft stdio/ functions */
 void test_stdio(int tests, int *total_tests);
+
+/* Test libft stdlib/ functions */
+void test_stdlib(int tests, int *failed_tests, int *total_tests);
+
 
 int main(void)
 {
@@ -47,6 +51,9 @@ int main(void)
 
 	puts("\n\n =============== TEST STDIO =================\n\n");
 	test_stdio(tests, &total_tests);
+
+	puts("\n\n =============== TEST STDLIB ================\n\n");
+	test_stdlib(tests, &failed_tests, &total_tests);
 
 
 
@@ -346,5 +353,72 @@ void test_stdio(int tests, int *total_tests)
 	test_stdio_ft_putnbr_fd(test_values_ft_putnbr_fd, tests);
 
 	*total_tests += tests * 7;
+}
+
+void test_stdlib(int tests, int *failed_tests, int *total_tests)
+{
+	char *test_values_ft_atoi[15] = 
+	{
+		"1",
+		"0",
+		"00",
+		"001",
+		"-1",
+		"1234567890",
+		"0123456789",
+		"-12",
+		"--12",
+		"88-1",
+		"112",
+		"111",
+		"1000000001",
+		"00010001",
+		"101"
+	};
+
+	int test_values_ft_range[15][2] = 
+	{
+		{1, 10},
+		{0, 10},
+		{1, 5},
+		{10, 12},
+		{1, 1},
+		{1, 0},
+		{0, 1},
+		{0, 0},
+		{1, 8},
+		{1, 3},
+		{2, 4},
+		{3, 12},
+		{4, 14},
+		{5, 10},
+		{5, 0}
+	};
+
+	size_t test_values_ft_calloc[15] = 
+	{ 
+		sizeof(int), 
+		sizeof(char), 
+		sizeof(char *), 
+		sizeof(int *), 
+		sizeof(long), 
+		sizeof(unsigned int), 
+		sizeof(unsigned long), 
+		sizeof(double), 
+		sizeof(unsigned long long), 
+		3, 
+		7, 
+		14, 
+		0, 
+		1, 
+		34
+	};
+
+	int test_sizes_ft_calloc[15] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 0, -1, 12, 13, 14, 15};
+
+	*failed_tests += test_stdlib_ft_atoi(test_values_ft_atoi, tests);
+	*failed_tests += test_stdlib_ft_range(test_values_ft_range, tests);
+	*failed_tests += test_stdlib_ft_calloc(test_values_ft_calloc, test_sizes_ft_calloc, tests);
+	*total_tests += tests * 3;
 }
 
