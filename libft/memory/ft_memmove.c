@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alkuzin <[null]@student.42.fr>             +#+  +:+       +#+        */
+/*   By: alkuzin <->                                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 17:43:49 by alkuzin           #+#    #+#             */
-/*   Updated: 2023/11/16 18:50:55 by alkuzin          ###   ########.fr       */
+/*   Updated: 2024/01/01 12:05:41 by alkuzin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,29 @@
 
 void *ft_memmove(void *dest, const void *src, size_t n)
 {
-    unsigned char *cdest;
-    const unsigned char *csrc;
-    unsigned char temp_dest[n];
-    int i;
+    unsigned char *ptr_src;
+	unsigned char *ptr_dst;
 
-    cdest = (unsigned char *)dest;
-    csrc = (const unsigned char *)src;
-    
-    i = 0;
-    while(csrc[i] && n > 0)
-    {
-        temp_dest[i] = csrc[i];
-        n--;
-        i++;
-    }
 
-    i = 0;
-    while(temp_dest[i])
-    {
-        cdest[i] = temp_dest[i];
-        i++;
-    } 
-    
-    return dest;
+	ptr_dst = (unsigned char *)dest;
+	ptr_src = (unsigned char *)src;
+	if (ptr_src > ptr_dst)
+	{
+		while (n > 0)
+		{
+			*ptr_dst++ = *ptr_src++;
+			n--;
+		}
+	}
+	else
+	{
+		ptr_src = ptr_src + n - 1;
+		ptr_dst = ptr_dst + n - 1;
+		while (n > 0)
+		{
+			*ptr_dst-- = *ptr_src--;
+			n--;
+		}
+	}
+	return dest;
 }
