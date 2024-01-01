@@ -22,6 +22,8 @@ void test_math(int tests, int *failed_tests, int *total_tests);
 /* Test libft memory/ functions */
 void test_memory(int tests, int *failed_tests, int *total_tests);
 
+/* Test libft stdio/ functions */
+void test_stdio(int tests, int *total_tests);
 
 int main(void)
 {
@@ -34,14 +36,19 @@ int main(void)
 	total_tests = 0;
 	failed_tests = 0;
 	
-	puts("\n\n ================ TEST CTYPE ================\n\n");
+	puts("\n\n =============== TEST CTYPE =================\n\n");
 	test_ctype(tests, &failed_tests, &total_tests);
 	
-	puts("\n\n ================ TEST MATH =================\n\n");
+	puts("\n\n =============== TEST MATH ==================\n\n");
 	test_math(tests, &failed_tests, &total_tests);
 
 	puts("\n\n =============== TEST MEMORY ================\n\n");
 	test_memory(tests, &failed_tests, &total_tests);
+
+	puts("\n\n =============== TEST STDIO =================\n\n");
+	test_stdio(tests, &total_tests);
+
+
 
 	puts("\n >>>>>>>>>>>>>>>> TESTS RESULT <<<<<<<<<<<<<<<<");
 	tests_result(total_tests, failed_tests);
@@ -302,5 +309,42 @@ void test_memory(int tests, int *failed_tests, int *total_tests)
 
 	// To test ft_memcmp() it is better to replace in the previous test standart memcmp() on ft_memcmp() 
 	*failed_tests += test_ft_memcmp(test_values_ft_memmove, tests);
-	*total_tests += tests * 6;
+	*total_tests += tests * 7;
 }
+
+void test_stdio(int tests, int *total_tests)
+{
+	int test_values_ft_putchar[15] = {'a', 'A', 'z', 'Z', '0', '9', '_', ':', '+', '&', '\'', '\"', '\n', '\t', '\0'};
+
+	char *test_values_print_strings[15][2] = 
+	{
+		{"a", "a"},
+		{"(word\\v)\\n", "(word\v)\n"},
+		{"Hello, world!\\n", "Hello, world!\n"},
+		{"...$%^ %^&*&*()\\n", "...$%^ %^&*&*()\n"},
+		{"word1 word2, word3;\\n", "word1 word2, word3;\n"},
+		{" \\x\\n", " \\x\\n"},
+		{"\\t{a\\tb\\tc}\\t\\n", "\t{a\tb\tc}\t\n"},
+		{"(((\\t)))\n", "(((\t)))\\n"},
+		{"\\xff\\x45\\x37\\x20\\x24\\n\\n", "\xff\x45\x37\x20\x24\n"},
+		{"Hello, world!\\b\\b\\b\\b\\b\\b\\n", "Hello, world!\b\b\b\b\b\b\n"},
+		{"a b c\\r\\n", "a b c\r\n"},
+		{"^^^\\n", "^^^\n"},
+		{" word1\\b2\\n", " word1\b2\n"},
+		{"|\\ttable\\t|\\n", "|\ttable\t|\n"},
+		{" word1\\tword2,\\tword3;\\n", " word1\tword2,\tword3;\n"}
+	};
+
+	int test_values_ft_putnbr_fd[15] = {1, -2, 3, 4, 5, -6, 7, 8, 9, 0, 11, -12, 13, 1234567890, 15};
+
+	test_stdio_ft_putchar(ft_putchar, test_values_ft_putchar, tests, "ft_putchar");
+	test_stdio_ft_putchar_fd(ft_putchar_fd, test_values_ft_putchar, tests, "ft_putchar_fd");
+	test_stdio_ft_putstr(ft_putstr, test_values_print_strings, tests, "ft_putstr");
+	test_stdio_ft_putstr(ft_puts, test_values_print_strings, tests, "ft_puts");
+	test_stdio_ft_putstr_fd(ft_putstr_fd, test_values_print_strings, tests, "ft_putstr_fd");
+	test_stdio_ft_putstr_fd(ft_putendl_fd, test_values_print_strings, tests, "ft_putendl_fd");
+	test_stdio_ft_putnbr_fd(test_values_ft_putnbr_fd, tests);
+
+	*total_tests += tests * 7;
+}
+
