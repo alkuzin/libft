@@ -6,7 +6,7 @@
 /*   By: alkuzin <->                                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/31 15:36:05 by alkuzin           #+#    #+#             */
-/*   Updated: 2024/01/01 12:35:05 by alkuzin          ###   ########.fr       */
+/*   Updated: 2024/01/01 20:12:59 by alkuzin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -286,7 +286,7 @@ int test_ft_memset(int (*test_values)[2], int size)
 
 	test = 0;
 	failed_tests = 0;
-	puts("\n ------------ Test ft_memset() ------------");
+	puts("\n ------------ Test ft_memset() ------------\n");
 	while (test < size)
 	{
 		memset(expected_result, '.', sizeof(expected_result));
@@ -330,7 +330,7 @@ int test_ft_bzero(int *test_values, int size)
 
 	test = 0;
 	failed_tests = 0;
-	puts("\n ------------ Test ft_bzero() ------------");
+	puts("\n ------------ Test ft_bzero() ------------\n");
 	while (test < size)
 	{
 		memset(expected_result, 0xff, sizeof(expected_result));
@@ -378,7 +378,7 @@ int test_ft_memchr(int (*test_values)[2], int size)
 	test = 0;
 	failed_tests = 0;
 	buffer[32] = '\0';
-	puts("\n ------------ Test ft_memchr() ------------");
+	puts("\n ------------ Test ft_memchr() ------------\n");
 	while (test < size)
 	{
 		value     = test_values[test][0];
@@ -706,7 +706,7 @@ void test_stdio_ft_putnbr_fd(int *test_values, int size)
 	
 
 	test = 0;
-	puts("\n ------------ Test ft_putnbr_fd() ------------");
+	puts("\n ------------ Test ft_putnbr_fd() ------------\n");
 	while(test < size)
 	{
 		value = test_values[test];
@@ -722,4 +722,173 @@ void test_stdio_ft_putnbr_fd(int *test_values, int size)
 		
 		test++;
 	}
+}
+
+int test_stdlib_ft_atoi(char *(*test_values), int size)
+{
+	int test;
+	int failed_tests;
+	char value[32];
+	int expected_result;
+	int   actual_result;
+	
+
+	test = 0;
+	failed_tests = 0;
+	puts("\n ------------ Test ft_atoi() ------------\n");
+	while(test < size)
+	{
+		strncpy(value, test_values[test], 32);
+
+		expected_result  = atoi(value);
+		actual_result = ft_atoi(value);
+		
+		printf(" Expected result:  %d\n", expected_result);
+		printf(" Actual result:    %d\n",   actual_result);
+
+		if(expected_result != actual_result)
+		{
+			printf("\033[31m Test %d: <FAILED> on value (\"%s\") \033[0m\n", test + 1, value); 
+			failed_tests++;
+		}
+		else	
+			printf("\033[92m Test: %d (OK) \033[0m\n", test + 1);
+		
+		test++;
+	}
+
+	return failed_tests;
+}
+
+void print_int_array(int *arr, int size)
+{
+	int i;
+
+	if (arr == NULL)
+	{
+		printf("(null)\n");
+		return;
+	}
+
+	putchar('{');
+	putchar(' ');
+	i = 0;
+	while (i < size)
+	{
+		printf("%d ", arr[i]);
+		if (i != size - 1)
+		{
+			putchar(',');
+			putchar(' ');
+		}
+
+		i++;
+	}
+	putchar('}');
+	putchar('\n');
+}
+
+
+int test_stdlib_ft_range(int (*test_values)[2], int size)
+{
+	int test;
+	int failed_tests;
+	int   *actual_result;
+	int min, max;
+	
+
+	test = 0;
+	failed_tests = 0;
+	
+	puts("\n ------------ Test ft_range() ------------\n");
+	while(test < size)
+	{
+		min = test_values[test][0];
+		max = test_values[test][1];
+		actual_result = ft_range(min, max);
+
+		printf(" Test %d ft_range(%d, %d)\n", test, min, max);
+		if(actual_result)
+		{
+			printf("%s", " Actual result: ");
+			print_int_array(actual_result, abs(max) - abs(min));
+			putchar('\n');
+		}
+		else
+			printf("%s\n\n", " Actual result: (null)");
+		
+		free(actual_result);
+		test++;
+	}
+
+	return failed_tests;
+}
+
+int test_stdlib_ft_calloc(size_t *test_values, int *test_sizes, int size)
+{
+	int test;
+	int failed_tests;
+	unsigned char *expected_result;
+	unsigned char   *actual_result;
+	size_t s;
+	int sz;
+	size_t final_size;
+
+	test = 0;
+	failed_tests = 0;
+	puts("\n ------------ Test ft_calloc() ------------\n");
+	while(test < size)
+	{
+		s = test_values[test];
+		sz = test_sizes[test];
+		expected_result  = calloc(s, sz);
+		actual_result = ft_calloc(s, sz);
+
+		final_size = s * sz;
+
+		if (expected_result && actual_result)
+		{
+			memset(expected_result, '.', final_size);
+			memset(actual_result,   '.', final_size);
+		}
+
+		printf(" Test %d ft_calloc(%lu, %d)\n", test, s, sz);
+
+		if(expected_result)
+		{
+			printf("%s", " Expected result: \t");
+			print_buffer(expected_result, final_size);
+		}
+		else
+			puts(" Expected result: (null)");
+
+		if(actual_result)
+		{
+			printf("%s", " Actual result: \t");
+			print_buffer(actual_result,	final_size);
+			printf(" Final size: %lu\n", final_size);
+		}
+		else
+			puts(" Actual result:   (null)");
+		putchar('\n');
+
+		if(!(expected_result) && !(actual_result))
+			printf("\033[92m Test: %d (OK) \033[0m\n", test + 1);
+		else
+		{
+			if((memcmp(expected_result, actual_result, final_size) != 0))
+			{
+				printf("\033[31m Test %d: <FAILED> on value (%lu, %d) \033[0m\n", test + 1, s, sz); 
+				failed_tests++;
+			}
+			else	
+				printf("\033[92m Test: %d (OK) \033[0m\n", test + 1);
+		}
+		
+		free(expected_result);
+		free(actual_result);
+		test++;
+	}
+
+	return failed_tests;
 }
