@@ -3,7 +3,7 @@ CFLAGS = -Wall -Wextra -Werror -Wno-implicit-function-declaration
 
 NAME = memory.o
 
-SRC = ft_bzero ft_memccpy ft_memchr ft_memcpy ft_memmove ft_memset
+SRC = ft_bzero ft_memccpy ft_memchr ft_memcpy ft_memmove ft_memset ft_memcmp
 
 SRCS = $(addsuffix .c, $(SRC))
 OBJS = $(addsuffix .o, $(SRC))
