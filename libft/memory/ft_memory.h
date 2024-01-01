@@ -6,7 +6,7 @@
 /*   By: alkuzin <[null]@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 15:47:39 by alkuzin           #+#    #+#             */
-/*   Updated: 2023/11/16 18:36:45 by alkuzin          ###   ########.fr       */
+/*   Updated: 2024/01/01 12:16:30 by alkuzin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,10 @@ extern void *ft_memmove(void *dest, const void *src, size_t n);
  * of the memory area pointed to by s
  * for the first instance of c. */
 extern void *ft_memchr(const void *s, int c, size_t n);
+
+/* The ft_memcmp() function compares the 
+ * first n bytes (each interpreted as 
+ * unsigned char) of the memory areas s1 and s2. */
+extern int ft_memcmp(const void *s1, const void *s2, size_t n);
 
 #endif /* FT_MEMORY_H */
