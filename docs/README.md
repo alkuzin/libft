@@ -1,4 +1,4 @@
-# libfterm 1.0 Documentation
+# libft Documentation
 
 ## Contents
 
