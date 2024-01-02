@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_stdlib.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alkuzin <[null]@student.42.fr>             +#+  +:+       +#+        */
+/*   By: alkuzin <->                                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 18:37:49 by alkuzin           #+#    #+#             */
-/*   Updated: 2023/11/19 11:48:04 by alkuzin          ###   ########.fr       */
+/*   Updated: 2024/01/02 12:31:33 by alkuzin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 #define FT_STDLIB_H
 
 #include "../libft.h"
-
-#define ABS(x) (x < 0 ? -x : x)
 
 /* The atoi() converts the initial portion 
  * of the string pointed to by str to int. */
