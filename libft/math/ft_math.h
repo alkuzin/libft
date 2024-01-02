@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_math.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alkuzin <[null]@student.42.fr>             +#+  +:+       +#+        */
+/*   By: alkuzin <->                                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 11:42:07 by alkuzin           #+#    #+#             */
-/*   Updated: 2023/12/31 15:32:40 by alkuzin          ###   ########.fr       */
+/*   Updated: 2024/01/02 12:31:12 by alkuzin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 #define _INF ft_inf()
 #define _NAN (0.0f / 0.0f)
 
-#define FABS(x) ((x) < 0 ? -(x) : (x))
+#define ABS(x) ((x) < 0 ? -(x) : (x))
 
 /* The ft_inf() return infinity */
 extern double ft_inf(void);
@@ -49,9 +49,6 @@ extern unsigned long ft_pfactorial(unsigned int n, unsigned int m);
 
 /* The ft_permutations() permutations without repetition */
 extern unsigned long ft_permutations(unsigned int n);
-
-/* The ft_permutations_r() permutations with repetition */
-/* extern unsigned int ft_permutations_r(unsigned int n, unsigned int m, unsigned int *k); */
 
 /* The ft_variations() variations without repetition */
 extern unsigned long ft_variations(unsigned int m, unsigned int n);
