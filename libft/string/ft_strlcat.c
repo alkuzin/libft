@@ -6,7 +6,7 @@
 /*   By: alkuzin <[null]@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 16:22:17 by alkuzin           #+#    #+#             */
-/*   Updated: 2023/11/17 19:23:49 by alkuzin          ###   ########.fr       */
+/*   Updated: 2024/01/03 23:49:41 by alkuzin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,10 @@ size_t ft_strlcat(char *dest, const char *src, size_t size)
     int dest_len;
     int src_len;
 
+
+    if (!dest || !src)
+        return 0;
+    
     
     dest_len = ft_strlen(dest);
     src_len = ft_strlen(src);
@@ -26,11 +30,12 @@ size_t ft_strlcat(char *dest, const char *src, size_t size)
         return (size + src_len);
     
     i = 0;
-    while(src[i] && i < (size - dest_len - 1))
+    while(src[i] && i < size - dest_len)
     {
         dest[dest_len + i] = src[i];
         i++;
     }
     dest[i + dest_len] = '\0';
+
     return (dest_len + src_len);
 }
