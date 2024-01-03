@@ -6,7 +6,7 @@
 /*   By: alkuzin <->                                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/31 15:36:05 by alkuzin           #+#    #+#             */
-/*   Updated: 2024/01/01 20:12:59 by alkuzin          ###   ########.fr       */
+/*   Updated: 2024/01/03 23:49:13 by alkuzin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -318,7 +318,6 @@ int test_ft_memset(int (*test_values)[2], int size)
 	return failed_tests;
 }
 
-
 int test_ft_bzero(int *test_values, int size)
 {
 	int test;
@@ -361,7 +360,6 @@ int test_ft_bzero(int *test_values, int size)
 	
 	return failed_tests;
 }
-
 
 int test_ft_memchr(int (*test_values)[2], int size)
 {
@@ -412,7 +410,6 @@ int test_ft_memchr(int (*test_values)[2], int size)
 	
 	return failed_tests;
 }
-
 
 int test_ft_memcpy(int *test_values, int size)
 {
@@ -616,7 +613,6 @@ void test_stdio_ft_putchar(void (*f)(char), int *test_values, int size, const ch
 	}
 }
 
-
 void test_stdio_ft_putchar_fd(void (*f)(char, int), int *test_values, int size, const char *func_name)
 {
 	int test;
@@ -724,6 +720,7 @@ void test_stdio_ft_putnbr_fd(int *test_values, int size)
 	}
 }
 
+
 int test_stdlib_ft_atoi(char *(*test_values), int size)
 {
 	int test;
@@ -787,7 +784,6 @@ void print_int_array(int *arr, int size)
 	putchar('}');
 	putchar('\n');
 }
-
 
 int test_stdlib_ft_range(int (*test_values)[2], int size)
 {
@@ -890,5 +886,151 @@ int test_stdlib_ft_calloc(size_t *test_values, int *test_sizes, int size)
 		test++;
 	}
 
+	return failed_tests;
+}
+
+
+
+int test_ft_strlen(char **test_values, int size)
+{
+	int test;
+	int failed_tests;
+	int actual_result;
+	int expected_result;
+	char value[64];
+
+	
+	test = 0;
+	failed_tests = 0;
+	puts("\n ------------ Test ft_strlen() ------------\n");
+	while(test < size)
+	{
+		strncpy(value, test_values[test], 64);
+		actual_result = ft_strlen(value);
+		expected_result = strlen(value);
+
+		printf("\n Test %d ft_strlen('%s')\n", test + 1, value);
+		printf(" Expected result: %d\n", expected_result);
+		printf(" Actual result:   %d\n", actual_result);
+		
+		if(expected_result != actual_result)
+		{
+			printf("\033[31m Test %d: <FAILED> on value ('%s') \033[0m\n", test + 1, value); 
+			failed_tests++;
+		}
+		else	
+			printf("\033[92m Test: %d (OK) \033[0m\n", test + 1);
+
+		test++;
+	}
+	return failed_tests;	
+}
+
+int test_ft_strlcpy(size_t *test_values, int size)
+{
+	int test;
+	int failed_tests;
+	char   actual_result[32 + 1];
+	size_t s;
+
+	const char buffer[32] = "Test^string^*2024_qwerty*fd";
+	test = 0;
+	failed_tests = 0;
+	puts("\n ------------ Test ft_strlcpy() ------------\n");
+	while (test < size)
+	{
+		memset(actual_result,   0, 32);
+
+		s = (size_t)test_values[test];
+
+		ft_strlcpy(actual_result,   buffer, s);
+		actual_result[32]   = '\0';
+
+		printf("\n Test %d \n", test + 1);
+		printf(" Actual result   | ft_strlcpy(dest[32], src[32], %lu): \t '%-32s'\n\n", s, actual_result);
+
+		test++;
+	}
+	
+	return failed_tests;
+}
+
+int test_ft_strlcat(size_t *test_values, char **test_strings, int size)
+{
+	int test;
+	int failed_tests;
+	char   actual_result[96 + 1];
+	size_t s;
+	char value[96];
+
+	test = 0;
+	failed_tests = 0;
+	puts("\n ------------ Test ft_strlcat() ------------\n");
+	while (test < size)
+	{
+		s = (size_t)test_values[test];
+
+		printf("\n Test %d \n", test + 1);
+
+		memset(actual_result, 0, 96);
+		strncpy(actual_result,   "String + ", 96);
+
+		if (test_strings[test])
+		{
+			strncpy(value, test_strings[test], 96);
+			ft_strlcat(actual_result, value, s);
+		}
+		
+		printf(" Actual result   | ft_strlcat(dest[96], src[96], %lu): \t '%s'\n\n", s, actual_result);
+		test++;
+	}
+	
+	return failed_tests;
+}
+
+int test_ft_strchr(char *(*test_f)(const char *, int), char *(*f)(const char *, int), int *test_values, int size, char *func_name)
+{
+	int test;
+	int failed_tests;
+	char *expected_result;
+	char   *actual_result;
+	int value;
+	char buffer[32 + 1] = "Test^string^*2024_qwerty*fd";
+
+
+	test = 0;
+	failed_tests = 0;
+	buffer[32] = '\0';
+	printf("\n ------------ Test %s() ------------\n\n", func_name);
+	while (test < size)
+	{
+		value = test_values[test];
+
+		expected_result  = f(buffer, value);
+		actual_result = test_f(buffer, value);
+
+		printf("\n Test %d \n", test + 1);
+
+		if (expected_result == NULL)
+			printf(" Expected result |       %s(buffer[32], '%c'): \t '(null)'\n", func_name, value);
+		else
+			printf(" Expected result |       %s(buffer[32], '%c'): \t '%-32s'\n", func_name, value, expected_result);
+		
+		if (actual_result == NULL)
+			printf(" Actual result   |    ft_%s(buffer[32], '%c'): \t '(null)'\n", func_name, value);
+		else
+			printf(" Actual result   |    ft_%s(buffer[32], '%c'): \t '%-32s'\n", func_name, value, actual_result);
+
+		if(expected_result != actual_result)
+		{
+			printf("\033[31m Test %d: <FAILED> on value (%d) \033[0m\n", test + 1, value); 
+			failed_tests++;
+		}
+		else	
+			printf("\033[92m Test: %d (OK) \033[0m\n", test + 1);
+
+		test++;
+	}
+	
 	return failed_tests;
 }
