@@ -6,7 +6,7 @@
 /*   By: alkuzin <->                                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/31 15:35:53 by alkuzin           #+#    #+#             */
-/*   Updated: 2024/01/01 20:13:03 by alkuzin          ###   ########.fr       */
+/*   Updated: 2024/01/03 23:49:09 by alkuzin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,19 @@ extern int test_stdlib_ft_range(int (*test_values)[2], int size);
 
 /* Test libft stdlib ft_calloc() function */
 extern int test_stdlib_ft_calloc(size_t *test_values, int *test_sizes, int size);
+
+
+/* Test libft string ft_strlen() function */
+extern int test_ft_strlen(char **test_values, int size);
+
+/* Test libft string ft_strlcpy() function */
+extern int test_ft_strlcpy(size_t *test_values, int size);
+
+/* Test libft string ft_strlcat() function */
+extern int test_ft_strlcat(size_t *test_values, char **test_strings, int size);
+
+/* Test libft string ft_strchr() and ft_strrchr() functions */
+extern int test_ft_strchr(char *(*test_f)(const char *, int), char *(*f)(const char *, int), int *test_values, int size, char *func_name);
 
 
 /* Displays total tests result */
