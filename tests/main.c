@@ -6,7 +6,7 @@
 /*   By: alkuzin <->                                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 19:09:00 by alkuzin           #+#    #+#             */
-/*   Updated: 2024/01/01 20:13:27 by alkuzin          ###   ########.fr       */
+/*   Updated: 2024/01/03 23:49:18 by alkuzin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,9 @@ void test_stdio(int tests, int *total_tests);
 
 /* Test libft stdlib/ functions */
 void test_stdlib(int tests, int *failed_tests, int *total_tests);
+
+/* Test libft string/ functions */
+void test_string(int tests, int *failed_tests, int *total_tests);
 
 
 int main(void)
@@ -55,6 +58,8 @@ int main(void)
 	puts("\n\n =============== TEST STDLIB ================\n\n");
 	test_stdlib(tests, &failed_tests, &total_tests);
 
+	puts("\n\n =============== TEST STRING ================\n\n");
+	test_string(tests, &failed_tests, &total_tests);
 
 
 	puts("\n >>>>>>>>>>>>>>>> TESTS RESULT <<<<<<<<<<<<<<<<");
@@ -422,3 +427,56 @@ void test_stdlib(int tests, int *failed_tests, int *total_tests)
 	*total_tests += tests * 3;
 }
 
+void test_string(int tests, int *failed_tests, int *total_tests)
+{
+	char *test_values_ft_strlen[15] = 
+	{
+		"a",
+		"(word)\n",
+		"Hello, world!\n",
+		"...$%^ %^&*&*()\n",
+		"word1 word2, word3;\n",
+		" \\x\n", 
+		"{a\tb\tc}\n",
+		"(((\\t)))\n",
+		"\\xff\\x45\\x37\\x20\\x24\\n\\n",
+		"Hello, world!\\b\\b\\b\\b\\b\\b\\n",
+		"a b c\r\n",
+		"^^^\n",
+		" word1\\b2\\n",
+		"|\ttable\t|\n",
+		" word1\tword2,\tword3;\n"
+	};
+
+	size_t test_values_ft_strlcpy[15] = { 1, 22, 3, 4, 5, 10, 20, 30, 32, 16, 40, 19, 0, 11, 13 };
+
+	size_t test_values_ft_strlcat[15] = { 1, 22, 3, 4, 5, 10, 20, 30, 32, 16, 40, 19, 0, 11, 13 };
+	
+	char *test_strings_ft_strlcat[15] = 
+	{
+		"a",
+		"(word)\n",
+		"Hello, world!\n",
+		"...$%^ %^&*&*()\n",
+		"word1 word2, word3;\n",
+		" \\x\n", 
+		"{a b c}\n",
+		"(((\\t)))\n",
+		"\\xff\\x45\\x37\\x20\\x24\\n\\n",
+		"Hello, world!\n",
+		"a b c\r\n",
+		"^^^\n",
+		" word1\\b2\\n",
+		NULL,
+		" word1 word2,       word3;\n"
+	};
+
+	int test_values_ft_strchr[15] = { 'y', 'a', '2', 'f', 4, 'q', 'T', '4', '2', '_', 'i', 'y', 'g', '*', '*'};
+
+	*failed_tests += test_ft_strlen(test_values_ft_strlen, tests);
+	*failed_tests += test_ft_strlcpy(test_values_ft_strlcpy, tests);
+	*failed_tests += test_ft_strlcat(test_values_ft_strlcat, test_strings_ft_strlcat, tests);
+	*failed_tests += test_ft_strchr(ft_strchr, strchr, test_values_ft_strchr, tests, "strchr");
+	*failed_tests += test_ft_strchr(ft_strrchr, strrchr, test_values_ft_strchr, tests, "strrchr");
+	*total_tests += tests * 5;
+}
