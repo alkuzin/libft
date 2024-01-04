@@ -6,7 +6,7 @@
 /*   By: alkuzin <->                                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/31 15:36:05 by alkuzin           #+#    #+#             */
-/*   Updated: 2024/01/03 23:49:13 by alkuzin          ###   ########.fr       */
+/*   Updated: 2024/01/04 12:03:55 by alkuzin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -549,7 +549,7 @@ int test_ft_memcmp(int *test_values, int size)
 	while (test < size)
 	{
 		memset(buffer1, 0, 32);
-		memset(buffer1, 0, 32);
+		memset(buffer2, 0, 32);
 		buffer1[32] = '\0';
 		buffer2[32] = '\0';
 
@@ -1034,3 +1034,94 @@ int test_ft_strchr(char *(*test_f)(const char *, int), char *(*f)(const char *, 
 	
 	return failed_tests;
 }
+
+int test_ft_strnstr(size_t *test_values, char **test_strings, int size)
+{
+	int test;
+	int failed_tests;
+	char *actual_result;
+	char value[32 + 1];
+	char buffer[32 + 1] = "Test^string^*2024_qwerty*fd";
+	size_t s;
+
+
+	test = 0;
+	failed_tests = 0;
+	buffer[32] = '\0';
+	printf("\n ------------ Test ft_strnstr() ------------\n");
+	while (test < size)
+	{
+		printf("\n Test %d \n", test + 1);
+
+		s = test_values[test];
+		memset(value, 0, 32);
+		if (test_strings[test])
+			strncpy(value, test_strings[test], 32);
+		else
+			actual_result = NULL;
+		
+		actual_result = ft_strnstr(buffer, value, s);
+
+		if (actual_result == NULL)
+			printf(" Actual result   |    ft_strnstr(buffer[32], '%s', '%lu'): \t '(null)'\n", value, s);
+		else
+			printf(" Actual result   |    ft_strnstr(buffer[32], '%s', '%lu'): \t '%-32s'\n", value, s, actual_result);
+
+		test++;
+	}
+	
+	return failed_tests;
+}
+
+int test_ft_strncmp(int *test_values, int size)
+{
+	int test;
+	int failed_tests;
+
+	int expected_result;
+	int   actual_result;
+
+	char buffer1[32 + 1];
+	char buffer2[32 + 1];
+	size_t s;
+
+	const char buffer[32] = "Test^string^*2024_qwerty*fd";
+	test = 0;
+	failed_tests = 0;
+	puts("\n ------------ Test ft_strncmp() ------------");
+	while (test < size)
+	{
+		printf("\n Test %d \n", test + 1);
+
+		s = (size_t)test_values[test];
+		memset(buffer1, 0, 32);
+		memset(buffer2, 0, 32);
+		strncpy(buffer1, buffer, s);
+		strncpy(buffer2, buffer, s);
+		buffer1[32] = '\0';
+		buffer2[32] = '\0';
+
+		printf(" Buffer 1:  \t '%-32s'\n",   buffer1);
+		printf(" Buffer 2:  \t '%-32s'\n\n", buffer2);
+
+		expected_result =    strncmp(buffer1, buffer2, s);
+		actual_result   = ft_strncmp(buffer1, buffer2, s);
+
+		printf(" Expected result |    strncmp(buffer1[32], buffer2[32], %lu): \t (%d)\n", s, expected_result);
+		printf(" Actual result   | ft_strncmp(buffer1[32], buffer2[32], %lu): \t (%d)\n", s, actual_result);
+
+		if(expected_result != actual_result)
+		{
+			printf("\033[31m Test %d: <FAILED> on value (%lu) \033[0m\n", test + 1, s); 
+			failed_tests++;
+		}
+		else	
+			printf("\033[92m Test: %d (OK) \033[0m\n", test + 1);
+
+		test++;
+	}
+	
+	return failed_tests;
+}
+
+
