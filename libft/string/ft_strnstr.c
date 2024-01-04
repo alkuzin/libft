@@ -6,7 +6,7 @@
 /*   By: alkuzin <[null]@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 17:47:30 by alkuzin           #+#    #+#             */
-/*   Updated: 2023/11/17 19:24:29 by alkuzin          ###   ########.fr       */
+/*   Updated: 2024/01/04 11:49:18 by alkuzin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,14 @@ char *ft_strnstr(const char *big, const char *little, size_t len)
     size_t i;
     size_t j;
     int little_len;
+
+    if(!big || len == 0)
+        return NULL;
     
     if(!little)
        return ((char *)(big));
-    
+
+
     i = 0;
     little_len = ft_strlen(little);
     while(big[i] && i < len)
