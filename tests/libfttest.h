@@ -6,7 +6,7 @@
 /*   By: alkuzin <->                                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/31 15:35:53 by alkuzin           #+#    #+#             */
-/*   Updated: 2024/01/03 23:49:09 by alkuzin          ###   ########.fr       */
+/*   Updated: 2024/01/04 12:03:53 by alkuzin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,11 @@ extern int test_ft_strlcat(size_t *test_values, char **test_strings, int size);
 /* Test libft string ft_strchr() and ft_strrchr() functions */
 extern int test_ft_strchr(char *(*test_f)(const char *, int), char *(*f)(const char *, int), int *test_values, int size, char *func_name);
 
+/* Test libft string ft_strnstr() function */
+extern int test_ft_strnstr(size_t *test_values, char **test_strings, int size);
+
+/* Test libft string ft_strncmp() function */
+extern int test_ft_strncmp(int *test_values, int size);
 
 /* Displays total tests result */
 extern void tests_result(int total_tests, int failed_tests);
