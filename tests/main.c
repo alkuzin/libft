@@ -6,7 +6,7 @@
 /*   By: alkuzin <->                                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 19:09:00 by alkuzin           #+#    #+#             */
-/*   Updated: 2024/01/03 23:49:18 by alkuzin          ###   ########.fr       */
+/*   Updated: 2024/01/04 12:04:01 by alkuzin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -473,10 +473,35 @@ void test_string(int tests, int *failed_tests, int *total_tests)
 
 	int test_values_ft_strchr[15] = { 'y', 'a', '2', 'f', 4, 'q', 'T', '4', '2', '_', 'i', 'y', 'g', '*', '*'};
 
+	size_t test_values_ft_strnstr[15] = { 1, 2, 3, 4, 5, 10, 20, 30, 32, 16, 40, 19, 0, 11, 13 };
+
+	char *test_strings_ft_strnstr[15] = 
+	{
+		"est",
+		"ing",
+		"23",
+		"2",
+		"2024",
+		"years", 
+		"year",
+		"qwrt",
+		"qwerty",
+		"^*",
+		"Test",
+		"est",
+		"ing",
+		NULL,
+		" test"
+	};
+
+	int test_values_ft_strncmp[15] = { 1, 2, 3, 4, 5, 10, 20, 30, 32, 16, 40, 19, 0, 11, 13 };
+
 	*failed_tests += test_ft_strlen(test_values_ft_strlen, tests);
 	*failed_tests += test_ft_strlcpy(test_values_ft_strlcpy, tests);
 	*failed_tests += test_ft_strlcat(test_values_ft_strlcat, test_strings_ft_strlcat, tests);
 	*failed_tests += test_ft_strchr(ft_strchr, strchr, test_values_ft_strchr, tests, "strchr");
 	*failed_tests += test_ft_strchr(ft_strrchr, strrchr, test_values_ft_strchr, tests, "strrchr");
-	*total_tests += tests * 5;
+	*failed_tests += test_ft_strnstr(test_values_ft_strnstr, test_strings_ft_strnstr, tests);
+	*failed_tests += test_ft_strncmp(test_values_ft_strncmp, tests);
+	*total_tests += tests * 7;
 }
