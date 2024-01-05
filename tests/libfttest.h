@@ -14,6 +14,7 @@
 #define LIBFTTEST_H
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <math.h>
 #include <string.h>
 #include "../libft/libft.h"
@@ -110,6 +111,8 @@ extern int test_ft_strncmp(int *test_values, int size);
 /* Test libft string ft_split() function */
 extern int test_ft_split(char **test_charsets, char **test_strings, int size);
 
+/* Test libft string ft_strdup() function */
+extern int test_ft_strdup(char **test_strings, int size);
 
 
 /* Displays total tests result */
