@@ -1125,6 +1125,7 @@ int test_ft_strncmp(int *test_values, int size)
 }
 
 void print_str_array(char **arr);
+
 void print_str_array(char **arr)
 {
 	int i;
@@ -1188,7 +1189,7 @@ int test_ft_split(char **test_charsets, char **test_strings, int size)
 		printf(" ft_split(\"%s\", \"%s\")\n", string, charset);
 		actual_result = ft_split(string, charset);
 
-		printf("\n%s", " Actual result: ");
+		puts("\n Actual result: ");
 		print_str_array(actual_result);
 
 		i = 0;
@@ -1205,3 +1206,73 @@ int test_ft_split(char **test_charsets, char **test_strings, int size)
 
 	return failed_tests;
 }
+
+
+int test_ft_strdup(char **test_strings, int size)
+{
+	int test;
+	int failed_tests;
+	char *expected_result;
+	char   *actual_result;
+	char string[32 + 1];
+
+
+	test = 0;
+	failed_tests = 0;
+	puts("\n ------------ Test ft_strdup() ------------\n");
+	while(test < size)
+	{
+		printf("\n\n Test %d", test + 1);
+
+		if (!test_strings[test])
+		{
+			puts(" ft_strdup(NULL)\n");
+			puts("\n Expected result: (null)");
+			puts(" Actual result:   (null)\n");
+			printf("\033[92m Test: %d (OK) \033[0m\n", test + 1);
+			test++;
+			continue;
+		}
+		
+		memset(string , 0, 32);
+		strncpy(string ,  test_strings[test], 32);
+		string[32] = '\0';
+
+		expected_result  = strdup(string);
+		actual_result = ft_strdup(string);
+
+		printf(" ft_strdup(\"%s\")\n\n", string);
+
+		if(expected_result)
+			printf(" Expected result: \"%s\" \t\n", expected_result);
+		else
+			puts("\n Expected result: (null)");
+
+		if(actual_result)
+			printf(" Actual result:   \"%s\" \t\n", actual_result);
+		else
+			puts("\n Actual result:   (null)");
+		putchar('\n');
+
+		if(!(expected_result) && !(actual_result))
+			printf("\033[92m Test: %d (OK) \033[0m\n", test + 1);
+		else
+		{
+			if((strncmp(expected_result, actual_result, strlen(string)) != 0))
+			{
+				printf("\033[31m Test %d: <FAILED> on value (\"%s\") \033[0m\n", test + 1, string); 
+				failed_tests++;
+			}
+			else	
+				printf("\033[92m Test: %d (OK) \033[0m\n", test + 1);
+		}
+		
+		free(expected_result);
+		free(actual_result);
+		test++;
+	}
+
+	return failed_tests;
+}
+
+
