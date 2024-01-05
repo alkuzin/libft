@@ -107,6 +107,11 @@ extern int test_ft_strnstr(size_t *test_values, char **test_strings, int size);
 /* Test libft string ft_strncmp() function */
 extern int test_ft_strncmp(int *test_values, int size);
 
+/* Test libft string ft_split() function */
+extern int test_ft_split(char **test_charsets, char **test_strings, int size);
+
+
+
 /* Displays total tests result */
 extern void tests_result(int total_tests, int failed_tests);
 

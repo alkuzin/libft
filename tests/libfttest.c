@@ -1124,4 +1124,84 @@ int test_ft_strncmp(int *test_values, int size)
 	return failed_tests;
 }
 
+void print_str_array(char **arr);
+void print_str_array(char **arr)
+{
+	int i;
 
+
+	if (arr == NULL)
+	{
+		printf("(null)\n");
+		return;
+	}
+
+	putchar('{');
+	putchar(' ');
+	i = 0;
+	while (arr[i])
+	{
+		printf("\"%s\" ", arr[i]);
+		if (arr[i + 1])
+		{
+			putchar(',');
+			putchar(' ');
+		}
+
+		i++;
+	}
+	putchar('}');
+	putchar('\n');
+}
+
+int test_ft_split(char **test_charsets, char **test_strings, int size)
+{
+	int test;
+	int failed_tests;
+	char **actual_result;
+	char charset[32 + 1];
+	char string[32 + 1];
+	int i;
+
+
+	test = 0;
+	failed_tests = 0;
+	puts("\n ------------ Test ft_split() ------------\n");
+	while(test < size)
+	{
+
+		printf("\n\n Test %d", test + 1);
+
+		if (!(test_charsets[test] && test_strings[test]))
+		{
+			puts("\n Actual result: (null)\n");
+			test++;
+			continue;
+		}
+		
+		memset(charset, 0, 32);
+		memset(string , 0, 32);
+		strncpy(charset, test_charsets[test], 32);
+		strncpy(string ,  test_strings[test], 32);
+		charset[32] = '\0';
+
+		printf(" ft_split(\"%s\", \"%s\")\n", string, charset);
+		actual_result = ft_split(string, charset);
+
+		printf("\n%s", " Actual result: ");
+		print_str_array(actual_result);
+
+		i = 0;
+		while(actual_result[i])
+		{
+			free(actual_result[i]);
+			i++;
+		}
+		
+		free(actual_result);
+		putchar('\n');
+		test++;
+	}
+
+	return failed_tests;
+}
