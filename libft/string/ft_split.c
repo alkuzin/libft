@@ -69,10 +69,14 @@ char **ft_split(char *str, char *charset)
     char **strs;
     int word_count;
 
+
+    if(!str || !charset)
+        return NULL;
+
     word_count = ft_wordcount(str, charset);
     strs = (char **)malloc(sizeof(char*) * (word_count + 1));
 
-    if(!str || strs == NULL)
+    if(!strs)
         return NULL;
 
     i = 0;
