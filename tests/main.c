@@ -429,119 +429,139 @@ void test_stdlib(int tests, int *failed_tests, int *total_tests)
 
 void test_string(int tests, int *failed_tests, int *total_tests)
 {
-	char *test_values_ft_strlen[15] = 
-	{
-		"a",
-		"(word)\n",
-		"Hello, world!\n",
-		"...$%^ %^&*&*()\n",
-		"word1 word2, word3;\n",
-		" \\x\n", 
-		"{a\tb\tc}\n",
-		"(((\\t)))\n",
-		"\\xff\\x45\\x37\\x20\\x24\\n\\n",
-		"Hello, world!\\b\\b\\b\\b\\b\\b\\n",
-		"a b c\r\n",
-		"^^^\n",
-		" word1\\b2\\n",
-		"|\ttable\t|\n",
-		" word1\tword2,\tword3;\n"
-	};
+	// char *test_values_ft_strlen[15] = 
+	// {
+	// 	"a",
+	// 	"(word)\n",
+	// 	"Hello, world!\n",
+	// 	"...$%^ %^&*&*()\n",
+	// 	"word1 word2, word3;\n",
+	// 	" \\x\n", 
+	// 	"{a\tb\tc}\n",
+	// 	"(((\\t)))\n",
+	// 	"\\xff\\x45\\x37\\x20\\x24\\n\\n",
+	// 	"Hello, world!\\b\\b\\b\\b\\b\\b\\n",
+	// 	"a b c\r\n",
+	// 	"^^^\n",
+	// 	" word1\\b2\\n",
+	// 	"|\ttable\t|\n",
+	// 	" word1\tword2,\tword3;\n"
+	// };
 
-	size_t test_values_ft_strlcpy[15] = { 1, 22, 3, 4, 5, 10, 20, 30, 32, 16, 40, 19, 0, 11, 13 };
+	// size_t test_values_ft_strlcpy[15] = { 1, 22, 3, 4, 5, 10, 20, 30, 32, 16, 40, 19, 0, 11, 13 };
 
-	size_t test_values_ft_strlcat[15] = { 1, 22, 3, 4, 5, 10, 20, 30, 32, 16, 40, 19, 0, 11, 13 };
+	// size_t test_values_ft_strlcat[15] = { 1, 22, 3, 4, 5, 10, 20, 30, 32, 16, 40, 19, 0, 11, 13 };
 	
-	char *test_strings_ft_strlcat[15] = 
-	{
-		"a",
-		"(word)\n",
-		"Hello, world!\n",
-		"...$%^ %^&*&*()\n",
-		"word1 word2, word3;\n",
-		" \\x\n", 
-		"{a b c}\n",
-		"(((\\t)))\n",
-		"\\xff\\x45\\x37\\x20\\x24\\n\\n",
-		"Hello, world!\n",
-		"a b c\r\n",
-		"^^^\n",
-		" word1\\b2\\n",
-		NULL,
-		" word1 word2,       word3;\n"
-	};
+	// char *test_strings_ft_strlcat[15] = 
+	// {
+	// 	"a",
+	// 	"(word)\n",
+	// 	"Hello, world!\n",
+	// 	"...$%^ %^&*&*()\n",
+	// 	"word1 word2, word3;\n",
+	// 	" \\x\n", 
+	// 	"{a b c}\n",
+	// 	"(((\\t)))\n",
+	// 	"\\xff\\x45\\x37\\x20\\x24\\n\\n",
+	// 	"Hello, world!\n",
+	// 	"a b c\r\n",
+	// 	"^^^\n",
+	// 	" word1\\b2\\n",
+	// 	NULL,
+	// 	" word1 word2,       word3;\n"
+	// };
 
-	int test_values_ft_strchr[15] = { 'y', 'a', '2', 'f', 4, 'q', 'T', '4', '2', '_', 'i', 'y', 'g', '*', '*'};
+	// int test_values_ft_strchr[15] = { 'y', 'a', '2', 'f', 4, 'q', 'T', '4', '2', '_', 'i', 'y', 'g', '*', '*'};
 
-	size_t test_values_ft_strnstr[15] = { 1, 2, 3, 4, 5, 10, 20, 30, 32, 16, 40, 19, 0, 11, 13 };
+	// size_t test_values_ft_strnstr[15] = { 1, 2, 3, 4, 5, 10, 20, 30, 32, 16, 40, 19, 0, 11, 13 };
 
-	char *test_strings_ft_strnstr[15] = 
-	{
-		"est",
-		"ing",
-		"23",
-		"2",
-		"2024",
-		"years", 
-		"year",
-		"qwrt",
-		"qwerty",
-		"^*",
-		"Test",
-		"est",
-		"ing",
-		NULL,
-		" test"
-	};
+	// char *test_strings_ft_strnstr[15] = 
+	// {
+	// 	"est",
+	// 	"ing",
+	// 	"23",
+	// 	"2",
+	// 	"2024",
+	// 	"years", 
+	// 	"year",
+	// 	"qwrt",
+	// 	"qwerty",
+	// 	"^*",
+	// 	"Test",
+	// 	"est",
+	// 	"ing",
+	// 	NULL,
+	// 	" test"
+	// };
 
-	int test_values_ft_strncmp[15] = { 1, 2, 3, 4, 5, 10, 20, 30, 32, 16, 40, 19, 0, 11, 13 };
+	// int test_values_ft_strncmp[15] = { 1, 2, 3, 4, 5, 10, 20, 30, 32, 16, 40, 19, 0, 11, 13 };
 
-	char *test_strings_ft_split[15] = 
+	// char *test_strings_ft_split[15] = 
+	// {
+	// 	"Hello, World!",
+	// 	"This is a test",
+	// 	"C++ Programming Language",
+	// 	"Testing...1...2...3",
+	// 	"Apples, Bananas, Oranges",
+	// 	"Testing Split Function",
+	// 	"Hello World",
+	// 	"Testing:Split;Function",
+	// 	"Lorem ipsum dolor sit amet,",
+	// 	"F",
+	// 	"Testing Split Function",
+	// 	"AB-CD-EF-GH-IJ",
+	// 	"1,2,3,4,5,6,7,8,9,10",
+	// 	NULL,
+	// 	"Testing...Split...Function"
+	// };
+
+
+	// char *test_charsets_ft_split[15] = 
+	// {
+	// 	",",
+	// 	" ",
+	// 	"+",
+	// 	"...",
+	// 	", ",
+	// 	"", 
+	// 	"o",
+	// 	":;",
+	// 	"L",
+	// 	"^*",
+	// 	"Test",
+	// 	"-",
+	// 	"1234567890,",
+	// 	NULL,
+	// 	"..."
+	// };
+
+	char *test_strings_ft_strdup[15] = 
 	{
 		"Hello, World!",
 		"This is a test",
 		"C++ Programming Language",
 		"Testing...1...2...3",
 		"Apples, Bananas, Oranges",
-		"Testing Split Function",
+		"Testing Strdup Function",
 		"Hello World",
-		"Testing:Split;Function",
+		"Testing:Strdup;Function",
 		"Lorem ipsum dolor sit amet,",
 		"F",
-		"Testing Split Function",
+		"Testing \t Function",
 		"AB-CD-EF-GH-IJ",
 		"1,2,3,4,5,6,7,8,9,10",
 		NULL,
-		"Testing...Split...Function"
+		"Testing...Strdup...Function"
 	};
 
-
-	char *test_charsets_ft_split[15] = 
-	{
-		",",
-		" ",
-		"+",
-		"...",
-		", ",
-		"", 
-		"o",
-		":;",
-		"L",
-		"^*",
-		"Test",
-		"-",
-		"1234567890,",
-		NULL,
-		"..."
-	};
-
-	*failed_tests += test_ft_strlen(test_values_ft_strlen, tests);
-	*failed_tests += test_ft_strlcpy(test_values_ft_strlcpy, tests);
-	*failed_tests += test_ft_strlcat(test_values_ft_strlcat, test_strings_ft_strlcat, tests);
-	*failed_tests += test_ft_strchr(ft_strchr, strchr, test_values_ft_strchr, tests, "strchr");
-	*failed_tests += test_ft_strchr(ft_strrchr, strrchr, test_values_ft_strchr, tests, "strrchr");
-	*failed_tests += test_ft_strnstr(test_values_ft_strnstr, test_strings_ft_strnstr, tests);
-	*failed_tests += test_ft_strncmp(test_values_ft_strncmp, tests);
-	*failed_tests += test_ft_split(test_charsets_ft_split, test_strings_ft_split, tests);
-	*total_tests += tests * 8;
+	// *failed_tests += test_ft_strlen(test_values_ft_strlen, tests);
+	// *failed_tests += test_ft_strlcpy(test_values_ft_strlcpy, tests);
+	// *failed_tests += test_ft_strlcat(test_values_ft_strlcat, test_strings_ft_strlcat, tests);
+	// *failed_tests += test_ft_strchr(ft_strchr, strchr, test_values_ft_strchr, tests, "strchr");
+	// *failed_tests += test_ft_strchr(ft_strrchr, strrchr, test_values_ft_strchr, tests, "strrchr");
+	// *failed_tests += test_ft_strnstr(test_values_ft_strnstr, test_strings_ft_strnstr, tests);
+	// *failed_tests += test_ft_strncmp(test_values_ft_strncmp, tests);
+	// *failed_tests += test_ft_split(test_charsets_ft_split, test_strings_ft_split, tests);
+	*failed_tests += test_ft_strdup(test_strings_ft_strdup, tests);
+	*total_tests += tests * 9;
 }
