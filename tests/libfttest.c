@@ -1323,3 +1323,42 @@ int test_ft_strjoin(char **test_charsets, int size)
 
 	return failed_tests;
 }
+
+int test_ft_substr(size_t (*test_values)[2], int size)
+{
+	int test;
+	int failed_tests;
+	char *actual_result;
+	size_t value;
+	char buffer[32 + 1] = "Test^string^*2024_qwerty*fd";
+	size_t len;
+
+
+	test = 0;
+	failed_tests = 0;
+	buffer[32] = '\0';
+	printf("\n ------------ Test ft_substr() ------------\n");
+	while (test < size)
+	{
+		printf("\n Test %d \n", test + 1);
+
+		value = test_values[test][0];
+		len   = test_values[test][1];
+
+		actual_result = ft_substr(buffer, value, len);
+
+		if (actual_result == NULL)
+			puts("\n Actual result\t '(null)'\n");
+		else
+		{
+			printf(" ft_substr(\"%s\", '%lu', '%lu'):\n", buffer, value, len);
+			printf("\n Actual result: \"%s\"\n\n", actual_result);
+		}
+		
+		free(actual_result);
+		test++;
+	}
+	
+	return failed_tests;
+}
+
