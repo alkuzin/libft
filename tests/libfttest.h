@@ -117,6 +117,9 @@ extern int test_ft_strdup(char **test_strings, int size);
 /* Test libft string ft_strjoin() function */
 extern int test_ft_strjoin(char **test_charsets, int size);
 
+/* Test libft string ft_substr() function */
+extern int test_ft_substr(size_t (*test_values)[2], int size);
+
 
 /* Displays total tests result */
 extern void tests_result(int total_tests, int failed_tests);
