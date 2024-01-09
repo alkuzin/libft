@@ -31,6 +31,10 @@ char *ft_strtrim(char const *s1, char const *set)
     int start_pos;
     int end_pos;
 
+
+    if(!s1 || !set)
+        return NULL;
+
     i = 0;
     symbols_count = 0;
     while(s1[i])
