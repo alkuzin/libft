@@ -120,6 +120,9 @@ extern int test_ft_strjoin(char **test_charsets, int size);
 /* Test libft string ft_substr() function */
 extern int test_ft_substr(size_t (*test_values)[2], int size);
 
+/* Test libft string ft_strtrim() function */
+extern int test_ft_strtrim(char *(*test_values)[2], int size);
+
 
 /* Displays total tests result */
 extern void tests_result(int total_tests, int failed_tests);
