@@ -6,7 +6,7 @@
 /*   By: alkuzin <->                                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/31 15:35:53 by alkuzin           #+#    #+#             */
-/*   Updated: 2024/01/09 14:00:52 by alkuzin          ###   ########.fr       */
+/*   Updated: 2024/01/09 16:08:34 by alkuzin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include <math.h>
 #include <string.h>
 #include "../libft/libft.h"
+
 
 /* Test libft ctype functions with one argument */
 extern int test_ctype_func(int(*test_f)(int), int *test_values, int *expected_values, int size, const char *func_name);
@@ -125,6 +126,9 @@ extern int test_ft_strtrim(char *(*test_values)[2], int size);
 
 /* Test libft string ft_itoa() function */
 extern int test_ft_itoa(int *test_values, int size);
+
+/* Test libft string ft_strmapi() function */
+extern int test_ft_strmapi(char **test_strings, int (*functions[15])(int), int size);
 
 
 /* Displays total tests result */
