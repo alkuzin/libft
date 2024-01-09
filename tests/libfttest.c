@@ -6,7 +6,7 @@
 /*   By: alkuzin <->                                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/31 15:36:05 by alkuzin           #+#    #+#             */
-/*   Updated: 2024/01/04 12:03:55 by alkuzin          ###   ########.fr       */
+/*   Updated: 2024/01/09 14:00:48 by alkuzin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -1275,4 +1275,51 @@ int test_ft_strdup(char **test_strings, int size)
 	return failed_tests;
 }
 
+int test_ft_strjoin(char **test_charsets, int size)
+{
+	int test;
+	int failed_tests;
+	char *actual_result;
+	char charset[32 + 1];
+	char *strings[] = {"Example", "of", "usage", "of", "Strjoin", "function"};
 
+
+	test = 0;
+	failed_tests = 0;
+	puts("\n ------------ Test ft_strjoin() ------------\n");
+	while(test < size)
+	{
+		printf("\n\n Test %d", test + 1);
+
+		if (!test_charsets[test])
+		{
+			puts("\n\n Actual result: (null)\n");
+			test++;
+			continue;
+		}
+		
+		memset(charset, 0, 32);
+		strncpy(charset, test_charsets[test], 32);
+		charset[32] = '\0';
+
+		printf(" ft_strjoin(6, strings, \"%s\")\n", charset);
+		puts(" Strings: {\"Example\", \"of\", \"usage\", \"of\", \"Strjoin\", \"function\"}");
+		
+		actual_result = ft_strjoin(6, strings, charset);
+
+		if (!actual_result)
+		{
+			puts("\n\n Actual result: (null)\n");
+			test++;
+			continue;
+		}
+
+		printf("\n Actual result: \"%s\"\n", actual_result);
+
+		free(actual_result);
+		putchar('\n');
+		test++;
+	}
+
+	return failed_tests;
+}
