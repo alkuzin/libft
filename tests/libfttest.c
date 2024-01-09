@@ -6,11 +6,103 @@
 /*   By: alkuzin <->                                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/31 15:36:05 by alkuzin           #+#    #+#             */
-/*   Updated: 2024/01/09 14:00:48 by alkuzin          ###   ########.fr       */
+/*   Updated: 2024/01/09 16:08:37 by alkuzin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libfttest.h"
+
+/* Auxiliary functions */
+
+static void print_buffer(void *buffer, int size)
+{
+	unsigned char *buf;
+	unsigned char cc;
+	unsigned char to_print;
+    int i;
+
+
+    buf = (unsigned char *)buffer;
+	putchar('\'');
+	i = 0;
+	while (i < size)
+	{
+		cc = (unsigned char)buf[i];
+		
+		if (cc == '\0')
+		{
+			putchar('0');
+			i++;
+			continue;
+		}
+
+		to_print = ft_isalnum(cc)? cc : '.';
+
+		putchar(to_print);
+		i++;
+	}
+	putchar('\'');
+	putchar('\n');
+}
+
+static void print_str_array(char **arr)
+{
+	int i;
+
+
+	if (arr == NULL)
+	{
+		printf("(null)\n");
+		return;
+	}
+
+	putchar('{');
+	putchar(' ');
+	i = 0;
+	while (arr[i])
+	{
+		printf("\"%s\" ", arr[i]);
+		if (arr[i + 1])
+		{
+			putchar(',');
+			putchar(' ');
+		}
+
+		i++;
+	}
+	putchar('}');
+	putchar('\n');
+}
+
+static void print_int_array(int *arr, int size)
+{
+	int i;
+
+	if (arr == NULL)
+	{
+		printf("(null)\n");
+		return;
+	}
+
+	putchar('{');
+	putchar(' ');
+	i = 0;
+	while (i < size)
+	{
+		printf("%d ", arr[i]);
+		if (i != size - 1)
+		{
+			putchar(',');
+			putchar(' ');
+		}
+
+		i++;
+	}
+	putchar('}');
+	putchar('\n');
+}
+
+/* Test libft ctype/ functions */
 
 int test_ctype_func(int(*test_f)(int), int *test_values, int *expected_values, int size, const char *func_name)
 {
@@ -43,6 +135,8 @@ int test_ctype_func(int(*test_f)(int), int *test_values, int *expected_values, i
 	}
 	return failed_tests;	
 }
+
+/* Test libft math/ functions */
 
 int test_math_func_1_arg(double(*test_f)(double), double(*f)(double), double *test_values, int size, const char *func_name)
 {
@@ -164,14 +258,6 @@ int test_ft_inf(void)
 	return failed_tests;
 }
 
-void tests_result(int total_tests, int failed_tests)
-{
-	if(failed_tests != 0)
-		printf("\033[31m FAILED: %d/%d \033[0m\n", failed_tests, total_tests);
-	else
-		printf("\033[92m FAILED: %d/%d \033[0m\n", failed_tests, total_tests);
-}
-
 int test_math_func_comb(unsigned long(*test_f)(unsigned int, unsigned int), unsigned long (*test_values)[3], int size, const char *func_name)
 {
 	int test;
@@ -242,37 +328,7 @@ int test_math_func_factorial(unsigned long(*test_f)(unsigned int), unsigned long
 	return failed_tests;
 }
 
-
-static void print_buffer(void *buffer, int size)
-{
-	unsigned char *buf;
-	unsigned char cc;
-	unsigned char to_print;
-    int i;
-
-
-    buf = (unsigned char *)buffer;
-	putchar('\'');
-	i = 0;
-	while (i < size)
-	{
-		cc = (unsigned char)buf[i];
-		
-		if (cc == '\0')
-		{
-			putchar('0');
-			i++;
-			continue;
-		}
-
-		to_print = ft_isalnum(cc)? cc : '.';
-
-		putchar(to_print);
-		i++;
-	}
-	putchar('\'');
-	putchar('\n');
-}
+/* Test libft memory/ functions */
 
 int test_ft_memset(int (*test_values)[2], int size)
 {
@@ -582,9 +638,7 @@ int test_ft_memcmp(int *test_values, int size)
 	return failed_tests;
 }
 
-
-
-
+/* Test libft stdio/ functions */
 
 void test_stdio_ft_putchar(void (*f)(char), int *test_values, int size, const char *func_name)
 {
@@ -720,6 +774,7 @@ void test_stdio_ft_putnbr_fd(int *test_values, int size)
 	}
 }
 
+/* Test libft stdlib/ functions */
 
 int test_stdlib_ft_atoi(char *(*test_values), int size)
 {
@@ -755,34 +810,6 @@ int test_stdlib_ft_atoi(char *(*test_values), int size)
 	}
 
 	return failed_tests;
-}
-
-void print_int_array(int *arr, int size)
-{
-	int i;
-
-	if (arr == NULL)
-	{
-		printf("(null)\n");
-		return;
-	}
-
-	putchar('{');
-	putchar(' ');
-	i = 0;
-	while (i < size)
-	{
-		printf("%d ", arr[i]);
-		if (i != size - 1)
-		{
-			putchar(',');
-			putchar(' ');
-		}
-
-		i++;
-	}
-	putchar('}');
-	putchar('\n');
 }
 
 int test_stdlib_ft_range(int (*test_values)[2], int size)
@@ -889,7 +916,7 @@ int test_stdlib_ft_calloc(size_t *test_values, int *test_sizes, int size)
 	return failed_tests;
 }
 
-
+/* Test libft string/ functions */
 
 int test_ft_strlen(char **test_values, int size)
 {
@@ -1124,37 +1151,6 @@ int test_ft_strncmp(int *test_values, int size)
 	return failed_tests;
 }
 
-void print_str_array(char **arr);
-
-void print_str_array(char **arr)
-{
-	int i;
-
-
-	if (arr == NULL)
-	{
-		printf("(null)\n");
-		return;
-	}
-
-	putchar('{');
-	putchar(' ');
-	i = 0;
-	while (arr[i])
-	{
-		printf("\"%s\" ", arr[i]);
-		if (arr[i + 1])
-		{
-			putchar(',');
-			putchar(' ');
-		}
-
-		i++;
-	}
-	putchar('}');
-	putchar('\n');
-}
-
 int test_ft_split(char **test_charsets, char **test_strings, int size)
 {
 	int test;
@@ -1206,7 +1202,6 @@ int test_ft_split(char **test_charsets, char **test_strings, int size)
 
 	return failed_tests;
 }
-
 
 int test_ft_strdup(char **test_strings, int size)
 {
@@ -1436,4 +1431,52 @@ int test_ft_itoa(int *test_values, int size)
 	}
 	
 	return failed_tests;
+}
+
+int test_ft_strmapi(char **test_strings, int (*functions[15])(int), int size)
+{
+	int test;
+	int failed_tests;
+	char *actual_result;
+	char string[32 + 1];
+	
+
+	test = 0;
+	failed_tests = 0;
+	printf("\n ------------ Test ft_strmapi() ------------\n");
+	while (test < size)
+	{
+		printf("\n Test %d ", test + 1);
+
+		if (!test_strings[test] || !functions[test])
+			actual_result = ft_strmapi(test_strings[test], functions[test]);
+		else
+		{
+			strncpy(string, test_strings[test], 32);
+			string[32] = '\0';
+			actual_result = ft_strmapi(string, functions[test]);
+		}
+		
+		if (!actual_result)
+			puts("\n Actual result\t '(null)'\n");
+		else
+		{
+			printf(" ft_strmapi(\"%s\", int function(int)):\n", string);
+			printf("\n Actual result: \"%s\"\n\n", actual_result);
+		}
+		
+		free(actual_result);
+		test++;
+	}
+	
+	return failed_tests;
+}
+
+
+void tests_result(int total_tests, int failed_tests)
+{
+	if(failed_tests != 0)
+		printf("\033[31m FAILED: %d/%d \033[0m\n", failed_tests, total_tests);
+	else
+		printf("\033[92m FAILED: %d/%d \033[0m\n", failed_tests, total_tests);
 }
