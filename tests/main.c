@@ -6,7 +6,7 @@
 /*   By: alkuzin <->                                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 19:09:00 by alkuzin           #+#    #+#             */
-/*   Updated: 2024/01/04 12:04:01 by alkuzin          ###   ########.fr       */
+/*   Updated: 2024/01/09 14:00:58 by alkuzin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -535,23 +535,42 @@ void test_string(int tests, int *failed_tests, int *total_tests)
 	// 	"..."
 	// };
 
-	char *test_strings_ft_strdup[15] = 
+	// char *test_strings_ft_strdup[15] = 
+	// {
+	// 	"Hello, World!",
+	// 	"This is a test",
+	// 	"C++ Programming Language",
+	// 	"Testing...1...2...3",
+	// 	"Apples, Bananas, Oranges",
+	// 	"Testing Strdup Function",
+	// 	"Hello World",
+	// 	"Testing:Strdup;Function",
+	// 	"Lorem ipsum dolor sit amet,",
+	// 	"F",
+	// 	"Testing \t Function",
+	// 	"AB-CD-EF-GH-IJ",
+	// 	"1,2,3,4,5,6,7,8,9,10",
+	// 	NULL,
+	// 	"Testing...Strdup...Function"
+	// };
+
+	char *test_charsets_ft_strjoin[15] = 
 	{
-		"Hello, World!",
-		"This is a test",
-		"C++ Programming Language",
-		"Testing...1...2...3",
-		"Apples, Bananas, Oranges",
-		"Testing Strdup Function",
-		"Hello World",
-		"Testing:Strdup;Function",
-		"Lorem ipsum dolor sit amet,",
-		"F",
-		"Testing \t Function",
-		"AB-CD-EF-GH-IJ",
-		"1,2,3,4,5,6,7,8,9,10",
+		",",
+		" ",
+		"+",
+		"...",
+		", ",
+		"", 
+		"o",
+		":;",
+		"L",
+		"^*",
+		"Test",
+		"-",
+		"\t",
 		NULL,
-		"Testing...Strdup...Function"
+		"..."
 	};
 
 	// *failed_tests += test_ft_strlen(test_values_ft_strlen, tests);
@@ -562,6 +581,7 @@ void test_string(int tests, int *failed_tests, int *total_tests)
 	// *failed_tests += test_ft_strnstr(test_values_ft_strnstr, test_strings_ft_strnstr, tests);
 	// *failed_tests += test_ft_strncmp(test_values_ft_strncmp, tests);
 	// *failed_tests += test_ft_split(test_charsets_ft_split, test_strings_ft_split, tests);
-	*failed_tests += test_ft_strdup(test_strings_ft_strdup, tests);
-	*total_tests += tests * 9;
+	// *failed_tests += test_ft_strdup(test_strings_ft_strdup, tests);
+	*failed_tests += test_ft_strjoin(test_charsets_ft_strjoin, tests);
+	*total_tests += tests * 10;
 }
