@@ -12,7 +12,7 @@
 
 #include "ft_string.h"
 
-size_t ft_itoa_len(long n)
+static size_t ft_itoa_len(long n)
 {
 	size_t len;
 
