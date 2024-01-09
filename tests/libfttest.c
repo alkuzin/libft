@@ -1405,3 +1405,35 @@ int test_ft_strtrim(char *(*test_values)[2], int size)
 	return failed_tests;
 }
 
+int test_ft_itoa(int *test_values, int size)
+{
+	int test;
+	int failed_tests;
+	char *actual_result;
+	int value;
+	
+
+	test = 0;
+	failed_tests = 0;
+	printf("\n ------------ Test ft_itoa() ------------\n");
+	while (test < size)
+	{
+		printf("\n Test %d ", test + 1);
+
+		value = test_values[test];
+		actual_result = ft_itoa(value);
+		
+		if (!actual_result)
+			puts("\n Actual result\t '(null)'\n");
+		else
+		{
+			printf(" ft_itoa(%d):\n", value);
+			printf("\n Actual result: \"%s\"\n\n", actual_result);
+		}
+		
+		free(actual_result);
+		test++;
+	}
+	
+	return failed_tests;
+}
