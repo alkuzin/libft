@@ -248,7 +248,7 @@ extern char *ft_strtrim(char const *s1, char const *set);
 
 /* The ft_itoa() returns a string representing the 
  * integer received as an argument. */
-extern char *ft_itoa(long n);
+extern char *ft_itoa(int n);
 
 /* The ft_strmapi() applies the function ’f’ to each character of the string ’s’ */
 extern char *ft_strmapi(char const *s, int (*f)(int));

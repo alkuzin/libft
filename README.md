@@ -112,7 +112,7 @@ The libft - rewrited C standart library for own projects.
 
 50. char *ft_strtrim(char const *s1, char const *set);
 
-51. char *ft_itoa(long n);
+51. char *ft_itoa(int n);
 
 52. char *ft_strmapi(char const *s, int (*f)(int));
 ```
