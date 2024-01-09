@@ -6,7 +6,7 @@
 /*   By: alkuzin <->                                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/31 15:35:53 by alkuzin           #+#    #+#             */
-/*   Updated: 2024/01/04 12:03:53 by alkuzin          ###   ########.fr       */
+/*   Updated: 2024/01/09 14:00:52 by alkuzin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,9 @@ extern int test_ft_split(char **test_charsets, char **test_strings, int size);
 
 /* Test libft string ft_strdup() function */
 extern int test_ft_strdup(char **test_strings, int size);
+
+/* Test libft string ft_strjoin() function */
+extern int test_ft_strjoin(char **test_charsets, int size);
 
 
 /* Displays total tests result */
