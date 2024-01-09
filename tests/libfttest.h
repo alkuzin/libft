@@ -123,6 +123,9 @@ extern int test_ft_substr(size_t (*test_values)[2], int size);
 /* Test libft string ft_strtrim() function */
 extern int test_ft_strtrim(char *(*test_values)[2], int size);
 
+/* Test libft string ft_itoa() function */
+extern int test_ft_itoa(int *test_values, int size);
+
 
 /* Displays total tests result */
 extern void tests_result(int total_tests, int failed_tests);
