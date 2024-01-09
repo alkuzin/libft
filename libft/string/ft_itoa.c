@@ -12,36 +12,48 @@
 
 #include "ft_string.h"
 
-static size_t ft_itoa_len(long n)
+static size_t ft_itoa_len(int n)
 {
 	size_t len;
 
+
 	len = 0;
+
 	if (n == 0)
 		return 1;
+	
 	if (n < 0)
 	{
 		len++;
 		n = -n;
 	}
+
 	while (n >= 1)
 	{
 		len++;
 		n /= 10;
 	}
+
 	return len;
 }
 
-static char	*ft_num_to_str(long n, char *str, size_t len)
+static char	*ft_num_to_str(int n, char *str, size_t len)
 {
+	size_t length;
+
+
+	length = len;
 	str = ft_calloc(len + 1, sizeof(char));
-	if (str == NULL)
-		return (NULL);
+
+	if (!str)
+		return NULL;
+
 	if (n < 0)
 	{
 		str[0] = '-';
 		n = -n;
 	}
+
 	len--;
 	while (len)
 	{
@@ -49,20 +61,27 @@ static char	*ft_num_to_str(long n, char *str, size_t len)
 		n /= 10;
 		len--;
 	}
+
 	if (str[0] != '-')
 		str[0] = (n % 10) + '0';
-	return (str);
+
+	str[length] = '\0';
+		
+	return str;
 }
 
-char *ft_itoa(long n)
+char *ft_itoa(int n)
 {
 	size_t len;
 	char *str;
 
+
 	len = ft_itoa_len(n);
-	str = 0;
+	str = NULL;
 	str = ft_num_to_str(n, str, len);
+
 	if (!str)
 		return NULL;
+
 	return str;
 }
