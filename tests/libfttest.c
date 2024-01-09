@@ -1362,3 +1362,46 @@ int test_ft_substr(size_t (*test_values)[2], int size)
 	return failed_tests;
 }
 
+int test_ft_strtrim(char *(*test_values)[2], int size)
+{
+	int test;
+	int failed_tests;
+	char string[32 + 1];
+	char    set[32 + 1];
+	char *actual_result;
+
+
+	test = 0;
+	failed_tests = 0;
+	printf("\n ------------ Test ft_strtrim() ------------\n");
+	while (test < size)
+	{
+		printf("\n Test %d ", test + 1);
+
+		if (!test_values[test][0] || !test_values[test][1])
+			actual_result = ft_strtrim(test_values[test][0], test_values[test][1]);
+		else
+		{
+			strncpy(string, test_values[test][0], 32);
+			strncpy(set   , test_values[test][1], 32);
+			string[32] = '\0';
+			set[32] = '\0';
+
+			actual_result = ft_strtrim(string, set);
+		}
+		
+		if (actual_result == NULL)
+			puts("\n Actual result\t '(null)'\n");
+		else
+		{
+			printf(" ft_substr(\"%s\", \"%s\"):\n", string, set);
+			printf("\n Actual result: \"%s\"\n\n", actual_result);
+		}
+		
+		free(actual_result);
+		test++;
+	}
+	
+	return failed_tests;
+}
+
