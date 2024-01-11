@@ -12,18 +12,18 @@
 8. [String functions](#8-string-functions)
 
 ## 1. Introduction
-The libft - rewrited C standart library for own projects.
+The libft - rewrited C standard library for own projects.
 
 ## 2. Installation
 First clone this repository:
 ```console
 git clone https://github.com/alkuzin/libft.git
 ```
-Then move to __`libft/`__ directory and run:
+Then move to the __`libft/`__ directory and run:
 ```console
 make all && make clean
 ```
-Then include __`libft.h`__ header file in your project.
+Then include the __`libft.h`__ header file in your project.
 ```c
 #include "<path to your project>/libft/libft.h"
 /* project code here */
@@ -54,7 +54,7 @@ extern int ft_isascii(int c);
 /* Checks for a printable character (including space) */
 extern int ft_isprint(int c);
 
-/* Converts to uppercase character */
+/* Converts to an uppercase character */
 extern int ft_toupper(int c);
 
 /* Converts to lowercase character */
@@ -77,19 +77,19 @@ extern double ft_inf(void);
 /* The ft_log() calculates natural logarithm */
 extern double ft_log(double x);
 
-/* The ft_pow() equal to 'x^y' in math */
+/* The ft_pow() is equal to 'x^y' in math */
 extern double ft_pow(double x, double y);
 
-/* The ft_exp() equal to 'e^x' in math */
+/* The ft_exp() is equal to 'e^x' in math */
 extern double ft_exp(double x);
 
 /* The ft_sqrt() calculates the square root */
 extern double ft_sqrt(double x);
 
-/* The ft_factorial() equal to 'n!' in math (up to 20! including) */
+/* The ft_factorial() is equal to 'n!' in math (up to 20! including) */
 extern unsigned long ft_factorial(unsigned int n);
 
-/* The ft_pfactorial() equal calculating factorial from n to m including */
+/* The ft_pfactorial() is equal calculating factorial from n to m including */
 extern unsigned long ft_pfactorial(unsigned int n, unsigned int m);
 
 /* Combinatorical functions */
@@ -133,7 +133,7 @@ extern void *ft_memcpy(void *dest, const void *src, size_t n);
  * stopping when the character c is found. */
 extern void *ft_memccpy(void *dest, const void *src, int c, size_t n);
 
-/* The ft_memmove() copies n bytes 
+/* The ft_memmove() copy n bytes 
  * from memory area src to memory area dest. */
 extern void *ft_memmove(void *dest, const void *src, size_t n);
 
@@ -178,7 +178,7 @@ extern void ft_putnbr_fd(int n, int fd);
 
 ## 7. Stdlib functions
 
-The __`ft_stdlib.h`__ defines several standart library functions.
+The __`ft_stdlib.h`__ defines several standard library functions.
 
 ```c
 /* The atoi() converts the initial portion 
