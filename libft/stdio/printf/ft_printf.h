@@ -6,7 +6,7 @@
 /*   By: alkuzin <[null]@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 20:32:40 by alkuzin           #+#    #+#             */
-/*   Updated: 2023/12/03 11:57:16 by alkuzin          ###   ########.fr       */
+/*   Updated: 2024/01/11 15:47:31 by alkuzin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,18 @@ extern int ft_parse(const char* str, va_list args);
 /* int */
 extern int ft_printf_int(int n);
 
+extern int ft_printf_uint(unsigned int n);
+
+extern int ft_printf_hex(unsigned int n, int is_upper);
+
 /* string */
 extern int ft_printf_str(char *str);
-extern char *ft_printf_itoa(long n);
 
 /* char */
 extern int ft_printf_char(int c);
+
+/* pointer */
+extern int ft_printf_pointer(void *p);
+
 
 #endif /* FT_PRINTF_H */
