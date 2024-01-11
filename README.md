@@ -1,5 +1,5 @@
 # libft
-The libft - rewrited C standart library for own projects.
+The libft - rewrited C standard library for own projects.
 
 * Documentation [here](/docs/README.md).
 
