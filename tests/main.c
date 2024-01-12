@@ -61,7 +61,6 @@ int main(void)
 	puts("\n\n =============== TEST STRING ================\n\n");
 	test_string(tests, &failed_tests, &total_tests);
 
-
 	puts("\n >>>>>>>>>>>>>>>> TESTS RESULT <<<<<<<<<<<<<<<<");
 	tests_result(total_tests, failed_tests);
 	return 0;
@@ -356,7 +355,7 @@ void test_stdio(int tests, int *total_tests)
 	test_stdio_ft_putstr_fd(ft_putstr_fd, test_values_print_strings, tests, "ft_putstr_fd");
 	test_stdio_ft_putstr_fd(ft_putendl_fd, test_values_print_strings, tests, "ft_putendl_fd");
 	test_stdio_ft_putnbr_fd(test_values_ft_putnbr_fd, tests);
-
+	*total_tests += test_ft_printf();
 	*total_tests += tests * 7;
 }
 
