@@ -72,10 +72,10 @@ extern void test_stdio_ft_putchar(void (*f)(char), int *test_values, int size, c
 extern void test_stdio_ft_putchar_fd(void (*f)(char, int), int *test_values, int size, const char *func_name);
 
 /* Test libft stdio ft_putsrt() ft_puts() function */
-extern void test_stdio_ft_putstr(void (*f)(char *), char *(*test_values)[2], int size, const char *func_name);
+extern void test_stdio_ft_putstr(void (*f)(const char *), char *(*test_values)[2], int size, const char *func_name);
 
 /* Test libft stdio ft_putsrt_fd() ft_putendl_fd() function */
-extern void test_stdio_ft_putstr_fd(void (*f)(char *, int), char *(*test_values)[2], int size, const char *func_name);
+extern void test_stdio_ft_putstr_fd(void (*f)(const char *, int), char *(*test_values)[2], int size, const char *func_name);
 
 /* Test libft stdio ft_putnbr_fd() function */
 extern void test_stdio_ft_putnbr_fd(int *test_values, int size);

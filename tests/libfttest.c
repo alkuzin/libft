@@ -667,7 +667,7 @@ void test_stdio_ft_putchar(void (*f)(char), int *test_values, int size, const ch
 	}
 }
 
-void test_stdio_ft_putchar_fd(void (*f)(char, int), int *test_values, int size, const char *func_name)
+void test_stdio_ft_putchar_fd(void (*f)(const char, int), int *test_values, int size, const char *func_name)
 {
 	int test;
 	int value;
@@ -694,7 +694,7 @@ void test_stdio_ft_putchar_fd(void (*f)(char, int), int *test_values, int size, 
 	}
 }
 
-void test_stdio_ft_putstr(void (*f)(char *), char *(*test_values)[2], int size, const char *func_name)
+void test_stdio_ft_putstr(void (*f)(const char *), char *(*test_values)[2], int size, const char *func_name)
 {
 	int test;
 	char argument[32];
@@ -721,7 +721,7 @@ void test_stdio_ft_putstr(void (*f)(char *), char *(*test_values)[2], int size, 
 	}
 }
 
-void test_stdio_ft_putstr_fd(void (*f)(char *, int), char *(*test_values)[2], int size, const char *func_name)
+void test_stdio_ft_putstr_fd(void (*f)(const char *, int), char *(*test_values)[2], int size, const char *func_name)
 {
 	int test;
 	char argument[32];
