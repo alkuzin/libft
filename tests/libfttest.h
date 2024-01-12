@@ -80,6 +80,9 @@ extern void test_stdio_ft_putstr_fd(void (*f)(char *, int), char *(*test_values)
 /* Test libft stdio ft_putnbr_fd() function */
 extern void test_stdio_ft_putnbr_fd(int *test_values, int size);
 
+/* Test libft stdio ft_printf() function */
+extern int test_ft_printf(void);
+
 
 /* Test libft stdlib ft_atoi() function */
 extern int test_stdlib_ft_atoi(char *(*test_values), int size);
