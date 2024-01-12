@@ -4,7 +4,7 @@ CFLAGS = -Wall -Wextra -Werror -Wno-implicit-function-declaration
 NAME = stdio.o
 
 SRC = ft_putchar ft_puts ft_putstr ft_putchar_fd ft_putendl_fd ft_putnbr_fd ft_putstr_fd
-PRINTF_SRC = ft_printf ft_printf_int ft_printf_str ft_printf_char ft_printf_uint ft_printf_hex
+PRINTF_SRC = ft_printf ft_printf_int ft_printf_str ft_printf_char ft_printf_uint ft_printf_hex ft_printf_pointer
 PRINTF_SRC_PREFIXED = $(addprefix printf/, $(PRINTF_SRC))
 
 SRCS = $(addsuffix .c, $(SRC) $(PRINTF_SRC_PREFIXED))
