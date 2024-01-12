@@ -6,7 +6,7 @@
 /*   By: alkuzin <[null]@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 18:45:27 by alkuzin           #+#    #+#             */
-/*   Updated: 2024/01/11 16:18:08 by alkuzin          ###   ########.fr       */
+/*   Updated: 2024/01/12 12:14:10 by alkuzin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,11 @@ static int ft_print_args(char type, va_list args)
     else if(type == 'd' || type == 'i')
         count += ft_printf_int(va_arg(args, int));
     else if(type == 'u')
-        count += ft_printf_uint(va_arg(args, unsigned int));
-    
+        count += ft_printf_uint(va_arg(args, unsigned int));    
 	else if(type == 'x' || type == 'X')
         count += ft_printf_hex(va_arg(args, unsigned int), ft_isupper(type));
+    else if(type == 'p')
+        count += ft_printf_pointer((unsigned long int)va_arg(args, void *));
     
     else if(type == 's')
         count += ft_printf_str(va_arg(args, char *));
