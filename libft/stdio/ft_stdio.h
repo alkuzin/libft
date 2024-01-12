@@ -6,7 +6,7 @@
 /*   By: alkuzin <[null]@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 17:19:26 by alkuzin           #+#    #+#             */
-/*   Updated: 2024/01/11 14:57:49 by alkuzin          ###   ########.fr       */
+/*   Updated: 2024/01/12 14:17:37 by alkuzin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include "printf/ft_printf.h"
 
 #define PRINT_NULL "(null)"
+#define PRINT_NIL  "(nil)"
 
 /* Print character */
 extern void ft_putchar(char c);
