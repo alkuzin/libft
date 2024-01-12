@@ -1480,3 +1480,334 @@ void tests_result(int total_tests, int failed_tests)
 	else
 		printf("\033[92m FAILED: %d/%d \033[0m\n", failed_tests, total_tests);
 }
+
+/* Test ft_printf() format options */
+
+static void test_ft_printf_i(int *test_values, int size)
+{
+	char *fmt;
+	int test;
+	int value;
+
+
+	fmt = "%i";
+	test = 0;
+	while (test < size)
+	{
+		printf("\n\n Test %d   fmt: \"%s\"\n\n", test + 1, fmt);
+		
+		value = test_values[test];
+
+		ft_putstr(" ft_printf(fmt, value): \"");
+		ft_printf(fmt, value);
+		
+		ft_putstr("\"\n    printf(fmt, value): \"");
+		   printf(fmt, value);
+		
+		putchar('\"');
+		putchar('\n');
+		test++;
+	}
+}
+
+static void test_ft_printf_d(int *test_values, int size)
+{
+	char *fmt;
+	int test;
+	int value;
+
+
+	fmt = "%d";
+	test = 0;
+	while (test < size)
+	{
+		printf("\n\n Test %d   fmt: \"%s\"\n\n", test + 1, fmt);
+		
+		value = test_values[test];
+
+		ft_putstr(" ft_printf(fmt, value): \"");
+		ft_printf(fmt, value);
+		
+		ft_putstr("\"\n    printf(fmt, value): \"");
+		   printf(fmt, value);
+		
+		putchar('\"');
+		putchar('\n');
+		test++;
+	}
+}
+
+static void test_ft_printf_c(int *test_values, int size)
+{
+	char *fmt;
+	int test;
+	char value;
+
+
+	fmt = "%c";
+	test = 0;
+	while (test < size)
+	{
+		printf("\n\n Test %d   fmt: \"%s\"\n\n", test + 1, fmt);
+		
+		value = test_values[test];
+
+		ft_putstr(" ft_printf(fmt, value): \"");
+		ft_printf(fmt, value);
+		
+		ft_putstr("\"\n    printf(fmt, value): \"");
+		   printf(fmt, value);
+		
+		putchar('\"');
+		putchar('\n');
+		test++;
+	}
+}
+
+static void test_ft_printf_s(char **test_values, int size)
+{
+	char *fmt;
+	int test;
+	char value[32 + 1];
+
+
+	fmt = "%s";
+	test = 0;
+	while (test < size)
+	{
+		printf("\n\n Test %d   fmt: \"%s\"\n\n", test + 1, fmt);
+		
+		if (!test_values[test]) 
+		{
+			ft_putstr(" ft_printf(fmt, value): \"");
+			ft_printf(fmt, NULL);
+			
+			ft_putstr("\"\n    printf(fmt, value): \"");
+			printf(fmt, "(null)");
+			
+			putchar('\"');
+			putchar('\n');
+			test++;
+			continue;
+		}
+		
+		strncpy(value, test_values[test], 32);
+
+		ft_putstr(" ft_printf(fmt, value): \"");
+		ft_printf(fmt, value);
+		
+		ft_putstr("\"\n    printf(fmt, value): \"");
+		   printf(fmt, value);
+		
+		putchar('\"');
+		putchar('\n');
+		test++;
+	}
+}
+
+static void test_ft_printf_u(unsigned int *test_values, int size)
+{
+	char *fmt;
+	int test;
+	unsigned int value;
+
+
+	fmt = "%u";
+	test = 0;
+	while (test < size)
+	{
+		printf("\n\n Test %d   fmt: \"%s\"\n\n", test + 1, fmt);
+		
+		value = test_values[test];
+
+		ft_putstr(" ft_printf(fmt, value): \"");
+		ft_printf(fmt, value);
+		
+		ft_putstr("\"\n    printf(fmt, value): \"");
+		   printf(fmt, value);
+		
+		putchar('\"');
+		putchar('\n');
+		test++;
+	}
+}
+
+static void test_ft_printf_x(unsigned int *test_values, int is_upper, int size)
+{
+	char *fmt;
+	int test;
+	unsigned int value;
+
+
+	fmt = "%x";
+
+	if (is_upper)
+		fmt = "%X";
+	
+	test = 0;
+	while (test < size)
+	{
+		printf("\n\n Test %d   fmt: \"%s\"\n\n", test + 1, fmt);
+		
+		value = test_values[test];
+
+		ft_putstr(" ft_printf(fmt, value): \"");
+		ft_printf(fmt, value);
+		
+		ft_putstr("\"\n    printf(fmt, value): \"");
+		   printf(fmt, value);
+		
+		putchar('\"');
+		putchar('\n');
+		test++;
+	}
+}
+
+static void test_ft_printf_c_percent(int *test_values, int size)
+{
+	char *fmt;
+	int test;
+	char value;
+
+
+	fmt = "%%%c";
+	test = 0;
+	while (test < size)
+	{
+		printf("\n\n Test %d   fmt: \"%s\"\n\n", test + 1, fmt);
+		
+		value = test_values[test];
+
+		ft_putstr(" ft_printf(fmt, value): \"");
+		ft_printf(fmt, value);
+		
+		ft_putstr("\"\n    printf(fmt, value): \"");
+		   printf(fmt, value);
+		
+		putchar('\"');
+		putchar('\n');
+		test++;
+	}
+}
+
+static void test_ft_printf_p(int *test_values, int size)
+{
+	char *fmt;
+	int test;
+	int *value;
+
+
+	fmt = "%p";
+	test = 0;
+	while (test < size)
+	{
+		printf("\n\n Test %d   fmt: \"%s\"\n\n", test + 1, fmt);
+		
+		value = &test_values[test];
+
+		ft_putstr(" ft_printf(fmt, value): \"");
+		ft_printf(fmt, value);
+		
+		ft_putstr("\"\n    printf(fmt, value): \"");
+		   printf(fmt, value);
+		
+		putchar('\"');
+		putchar('\n');
+		test++;
+	}
+}
+
+int test_ft_printf(void)
+{
+	int tests;
+
+
+	int test_values_i[15] = 
+	{
+		1,
+		0,
+		1110,
+		-12345,
+		-1,
+		1234567890,
+		91256789,
+		-12,
+		-100,
+		88-1,
+		112,
+		111,
+		21,
+		103421,
+		10111
+	};
+
+	int test_values_c[15] = {'a', 'A', 'z', 'Z', '0', '9', '_', ':', '+', '&', '\'', '\"', '\n', '\t', '\0'};
+
+	char *test_values_s[15] = 
+	{
+		"est",
+		"ing",
+		"23",
+		"2",
+		"2024",
+		"years", 
+		"year",
+		"qwrt",
+		"qwerty",
+		"^*",
+		"Test",
+		"est",
+		"ing",
+		NULL,
+		" test"
+	};
+
+	unsigned int test_values_u[15] = 
+	{
+		1,
+		0,
+		1110,
+		-12345,
+		-1,
+		1234567890,
+		91256789,
+		-12,
+		-100,
+		88-1,
+		112,
+		111,
+		21,
+		103421,
+		1011112121
+	};
+
+	tests = 15;
+	puts("\n\n -------- TEST ft_printf() \"%i\" --------\n");
+	test_ft_printf_i(test_values_i, tests);
+
+	puts("\n\n -------- TEST ft_printf() \"%d\" --------\n");
+	test_ft_printf_d(test_values_i, tests);
+
+	puts("\n\n -------- TEST ft_printf() \"%c\" --------\n");
+	test_ft_printf_c(test_values_c, tests);
+
+	puts("\n\n -------- TEST ft_printf() \"%s\" --------\n");
+	test_ft_printf_s(test_values_s, tests);
+
+	puts("\n\n -------- TEST ft_printf() \"%u\" --------\n");
+	test_ft_printf_u(test_values_u, tests);
+
+	puts("\n\n -------- TEST ft_printf() \"%x\" --------\n");
+	test_ft_printf_x(test_values_u, 0, tests);
+
+	puts("\n\n -------- TEST ft_printf() \"%X\" --------\n");
+	test_ft_printf_x(test_values_u, 1, tests);
+
+	puts("\n\n -------- TEST ft_printf() \"%%%c\" --------\n");
+	test_ft_printf_c_percent(test_values_c, tests);
+
+	puts("\n\n -------- TEST ft_printf() \"%p\" --------\n");
+	test_ft_printf_p(test_values_c, tests);
+	
+	return tests * 9;
+}
