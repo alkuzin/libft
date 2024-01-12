@@ -174,6 +174,9 @@ extern void ft_putendl_fd(char *s, int fd);
 
 /* Outputs the integer ’n’ to the given file descriptor.*/
 extern void ft_putnbr_fd(int n, int fd);
+
+/* The ft_printf() formats and prints data */
+extern int ft_printf(const char *format, ...);
 ```
 
 ## 7. Stdlib functions
