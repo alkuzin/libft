@@ -6,7 +6,7 @@
 /*   By: alkuzin <->                                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 15:30:14 by alkuzin           #+#    #+#             */
-/*   Updated: 2024/01/12 12:29:24 by alkuzin          ###   ########.fr       */
+/*   Updated: 2024/01/12 14:17:02 by alkuzin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int ft_printf_pointer(unsigned long int p)
 
 		
 	if(p == 0) {
-		ft_putstr(PRINT_NULL);
+		ft_putstr(PRINT_NIL);
 		return 0;
 	}
 	
