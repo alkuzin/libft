@@ -6,13 +6,13 @@
 /*   By: alkuzin <[null]@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 11:36:55 by alkuzin           #+#    #+#             */
-/*   Updated: 2023/11/19 11:39:17 by alkuzin          ###   ########.fr       */
+/*   Updated: 2024/01/12 14:57:30 by alkuzin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_stdio.h"
 
-void ft_putendl_fd(char *s, int fd)
+void ft_putendl_fd(const char *s, int fd)
 {
     ft_putstr_fd(s, fd);
     ft_putchar_fd('\n', fd);

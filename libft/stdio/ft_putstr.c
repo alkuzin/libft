@@ -6,13 +6,13 @@
 /*   By: alkuzin <[null]@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 17:25:51 by alkuzin           #+#    #+#             */
-/*   Updated: 2023/11/14 17:26:50 by alkuzin          ###   ########.fr       */
+/*   Updated: 2024/01/12 14:53:22 by alkuzin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_stdio.h"
 
-void ft_putstr(char *str)
+void ft_putstr(const char *str)
 {
     int i;
 
