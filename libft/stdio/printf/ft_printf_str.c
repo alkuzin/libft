@@ -6,13 +6,13 @@
 /*   By: alkuzin <[null]@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 10:55:16 by alkuzin           #+#    #+#             */
-/*   Updated: 2024/01/11 14:55:35 by alkuzin          ###   ########.fr       */
+/*   Updated: 2024/01/12 14:50:07 by alkuzin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int ft_printf_str(char *str)
+int __ft_printf_str(const char *str)
 {
     if(!str) {
         ft_putstr(PRINT_NULL);

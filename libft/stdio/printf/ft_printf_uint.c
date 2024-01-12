@@ -6,7 +6,7 @@
 /*   By: alkuzin <->                                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 15:33:57 by alkuzin           #+#    #+#             */
-/*   Updated: 2024/01/11 15:42:10 by alkuzin          ###   ########.fr       */
+/*   Updated: 2024/01/12 14:50:37 by alkuzin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ static char *ft_utoa(unsigned int n)
 	return str;
 }
 
-int ft_printf_uint(unsigned int n)
+int __ft_printf_uint(unsigned int n)
 {
 	char *to_print;
 	int i;

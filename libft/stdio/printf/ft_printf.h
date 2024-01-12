@@ -6,7 +6,7 @@
 /*   By: alkuzin <[null]@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 20:32:40 by alkuzin           #+#    #+#             */
-/*   Updated: 2024/01/12 12:16:59 by alkuzin          ###   ########.fr       */
+/*   Updated: 2024/01/12 14:51:26 by alkuzin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,23 +24,25 @@ typedef struct s_flags
 /* The ft_printf() formats and prints data */
 extern int ft_printf(const char *format, ...);
 
-/* */
-extern int ft_parse(const char* str, va_list args);
+/* parse flags and format options from string */
+extern int __ft_parse(const char* str, va_list args);
 
-/* int */
-extern int ft_printf_int(int n);
+/* %i %d options (int) */
+extern int __ft_printf_int(int n);
 
-extern int ft_printf_uint(unsigned int n);
+/* %u option (unsigned int) */
+extern int __ft_printf_uint(unsigned int n);
 
-extern int ft_printf_hex(unsigned int n, int is_upper);
+/* %x %X options (hexadecimal) */
+extern int __ft_printf_hex(unsigned int n, int is_upper);
 
-/* string */
-extern int ft_printf_str(char *str);
+/* %s option (string) */
+extern int __ft_printf_str(const char *str);
 
-/* char */
-extern int ft_printf_char(int c);
+/* %c option (char) */
+extern int __ft_printf_char(int c);
 
-/* pointer */
-extern int ft_printf_pointer(unsigned long int p);
+/* %p option (pointer) */
+extern int __ft_printf_pointer(unsigned long int p);
 
 #endif /* FT_PRINTF_H */

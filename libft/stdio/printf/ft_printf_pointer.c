@@ -6,7 +6,7 @@
 /*   By: alkuzin <->                                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 15:30:14 by alkuzin           #+#    #+#             */
-/*   Updated: 2024/01/12 14:17:02 by alkuzin          ###   ########.fr       */
+/*   Updated: 2024/01/12 14:51:11 by alkuzin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static char dtoh(int v)
        return 'a' + v - 10;
 }
 
-int ft_printf_pointer(unsigned long int p)
+int __ft_printf_pointer(unsigned long int p)
 {
 	int count;
 	int i;

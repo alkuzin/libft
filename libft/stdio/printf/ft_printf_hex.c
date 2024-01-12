@@ -6,7 +6,7 @@
 /*   By: alkuzin <->                                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 15:49:09 by alkuzin           #+#    #+#             */
-/*   Updated: 2024/01/11 17:06:51 by alkuzin          ###   ########.fr       */
+/*   Updated: 2024/01/12 14:50:55 by alkuzin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static char *ft_xtoa(unsigned int n, int is_upper)
 	return hex;
 }
 
-int ft_printf_hex(unsigned int n, int is_upper)
+int __ft_printf_hex(unsigned int n, int is_upper)
 {
 	char *to_print;
 	int i;
