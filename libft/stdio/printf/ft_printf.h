@@ -6,7 +6,7 @@
 /*   By: alkuzin <[null]@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 20:32:40 by alkuzin           #+#    #+#             */
-/*   Updated: 2024/01/11 15:47:31 by alkuzin          ###   ########.fr       */
+/*   Updated: 2024/01/12 12:16:59 by alkuzin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ extern int ft_printf_str(char *str);
 extern int ft_printf_char(int c);
 
 /* pointer */
-extern int ft_printf_pointer(void *p);
-
+extern int ft_printf_pointer(unsigned long int p);
 
 #endif /* FT_PRINTF_H */
