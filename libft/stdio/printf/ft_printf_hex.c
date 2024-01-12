@@ -6,7 +6,7 @@
 /*   By: alkuzin <->                                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 15:49:09 by alkuzin           #+#    #+#             */
-/*   Updated: 2024/01/11 16:57:18 by alkuzin          ###   ########.fr       */
+/*   Updated: 2024/01/11 17:06:51 by alkuzin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ static char *ft_xtoa(unsigned int n, int is_upper)
 		n >>= 4;
 		--i;
 	}
-	//hex[ft_xtoa_len(n)] = '\0';
 	return hex;
 }
 
